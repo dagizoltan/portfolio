@@ -1,0 +1,210 @@
+head:
+  title: "Tapasztalat | Dági Zoltán — szoftverfejlesztő"
+  description: "Nyolc év szoftveres munka: frontend fejlesztés az Align Technology termékein, incidenskezelő eszköz az EPAM-nél, orvostechnikai IoT-eszköz és PCB-tervezés, valamint B2B piactér platformok."
+  keywords: "szoftverfejlesztő tapasztalat, frontend fejlesztő Budapest, Next.js fejlesztő, Node.js fejlesztő, AWS CloudFormation, IoT fejlesztő, beágyazott rendszerek Magyarország"
+
+hero:
+  eyebrow: "MUNKAHELYEK — 2015-TŐL 2024-IG"
+  title: "Nyolc pozíció, egy irány."
+  short_description: "Minden pozíció az önéletrajzomból származik; az időtartamokat az oldal a dátumokból számolja."
+  description: "Az út a Samsung és a Vodafone szervizeinek javításkövető szoftverétől egy kockázati tőkéből épült orvostechnikai IoT-eszközön át az Align Technology pácienseknek szóló felületéig vezet.<br/><br/>Ebből két pozíció fejlesztésvezetői szerep volt, egy — a berlini Bertelsmann-nál töltött év — pedig egyáltalán nem fejlesztés. Mindkettő szerepel a listán, mert az önéletrajz pontosan akkor szűnik meg hasznos lenni, amikor kimarad belőle, ami nem illik a képbe."
+  cta_primary: "Önéletrajz letöltése (PDF)"
+  cta_primary_href: "/assets/zoltan-dagi-cv.pdf"
+  cta_primary_download: true
+
+metrics_labels:
+  years: "Év a szakmában"
+  roles: "Pozíció"
+  companies: "Cég"
+  technologies: "Technológia"
+
+labels:
+  present: "Jelenleg"
+  detail: "Részletek"
+  back: "Összes pozíció"
+  lead: "Fejlesztésvezető"
+  period: "Időszak"
+  duration: "Időtartam"
+  location: "Helyszín"
+  company: "Cég"
+  project: "Projekt"
+  spec: "Adatok"
+  what_i_did: "AMIT CSINÁLTAM"
+  context: "Háttér"
+  pager: "További pozíciók"
+  older: "Korábbi pozíció"
+  newer: "Későbbi pozíció"
+  view_all: "Mind a nyolc pozíció"
+  named_tech: "Az önéletrajzban nevesítve"
+  named_tech_note: "Csak azok a technológiák szerepelnek itt, amelyeket az önéletrajz ennél a pozíciónál kifejezetten megnevez. A teljes lista a Technológiák oldalon van."
+
+# ---------------------------------------------------------------------------
+# Minden bejegyzés az önéletrajzból származik. A `highlights` az önéletrajz saját
+# felsorolása. A `stack` KIZÁRÓLAG azokat a technológiákat tartalmazza, amelyeket
+# az önéletrajz az adott pozíciónál megnevez — szándékosan nem teljes lista,
+# mert az önéletrajz sem rögzíti azt. A `summary` és a `context` értelmezés, nem
+# új állítás. Az `engineering: false` kihagyja a pozíciót az évszámból.
+# ---------------------------------------------------------------------------
+roles:
+  - id: sharp-web-solutions
+    company: "Sharp Web Solutions"
+    project: "Valós idejű távoli azonosító rendszer"
+    role: "Szoftverfejlesztő"
+    start: "2024-07"
+    end: "2024-12"
+    location: "Távmunka"
+    summary: "Szerveroldali fejlesztés egy valós idejű távoli azonosító rendszeren, az operátori és az ügyféloldalon egyaránt."
+    highlights:
+      - "Operátori és ügyféloldali szerverek központi frissítéseinek fejlesztése és tesztelése"
+      - "Adatbázis-verziófrissítések tesztelése"
+      - "Valós idejű távoli azonosítási folyamatok implementálása"
+    context: |
+      A távoli azonosítás olyan terület, ahol a helyesség mércéjét nem az ízlés, hanem a szabályozás szabja meg: egy azonosítás vagy megáll, vagy nem.
+
+      A munka a rendszer mindkét oldalát érintette — az operátori eszközöket és az ügyfélhez kerülő részt —, vagyis a változtatásokat párban kellett végiggondolni, nem egymástól függetlenül kiadni.
+
+  - id: ispyre-align-technology
+    company: "Ispyre Informatics"
+    project: "Webes felület az Align Technology számára"
+    role: "Szoftverfejlesztő"
+    start: "2022-07"
+    end: "2023-11"
+    location: "Távmunka"
+    lead: true
+    summary: "Frontend fejlesztés az Align Technology páciensek felé néző webes termékein, köztük a MyInvisalign 3D kezeléstervező nézőjén, mentorálás és interjúztatás mellett."
+    highlights:
+      - "Chat könyvtár fejlesztése orvos-páciens kommunikációhoz"
+      - "Next.js keretrendszer frissítése több projekten"
+      - "A MyInvisalign 3D kezelésnéző felületének újraépítése"
+      - "Biztonsági és csomagsebezhetőségi hibák javítása"
+      - "Junior fejlesztők mentorálása"
+      - "Fejlesztői interjúk juniortól senior szintig"
+    stack:
+      - "Next.js"
+      - "React"
+    context: |
+      Ez a leghosszabb fejlesztői szakasz az önéletrajzban, és egyben a termékhez legközelebbi: az Align Technology kezelésnézőjét olyan páciensek használják, akik a saját 3D kezelési tervüket nézik — vagyis a felület klinikai információt közvetít laikusoknak.
+
+      A pozíció nem merült ki a szállításban. Több projektet érintő keretrendszer-frissítés, sebezhetőségek javítása, juniorok mentorálása és junior-seniortól senior szintig tartó interjúztatás: ezeket egy csapat annak adja, akire az irányt is rábízza, nem csak a feladatokat.
+
+  - id: epam-vanhube
+    company: "EPAM"
+    project: "VANHUBE Bench — incidenskezelő eszköz"
+    role: "Szoftvermérnök"
+    start: "2021-09"
+    end: "2022-04"
+    location: "Távmunka"
+    summary: "Incidenskezelő alkalmazás refaktorálása AWS CloudFormation alapokra, build eszközökkel és költségoptimalizálással a serverless oldalon."
+    highlights:
+      - "Incidenskezelő webalkalmazás refaktorálása AWS CloudFormation segítségével"
+      - "Modulcsomagoló és kódolási szabványok bevezetése Node.js serverless függvényekhez"
+      - "Költségoptimalizálás és sebezhetőségek javítása"
+    stack:
+      - "AWS CloudFormation"
+      - "Node.js"
+      - "AWS Lambda"
+    context: |
+      Az incidenskezelő eszköz mások rossz napjainak az infrastruktúrája, ami külön súlyt ad a megbízhatóságnak és az üzemeltetés költségének.
+
+      A CloudFormation-refaktor mellett ez a pozíció a serverless kódbázis hálátlanabb felét is lefedte: modulcsomagoló és kikényszerített kódolási szabványok a függvényekhez, valamint költségoptimalizálás és sebezhetőségjavítás.
+
+  - id: renalevel-mpf-holding
+    company: "MPF Holding"
+    project: "RenaLevel — kockázati tőke és technológia"
+    role: "Projekttag, fejlesztésvezető"
+    start: "2020-01"
+    end: "2021-08"
+    location: "Távmunka"
+    lead: true
+    summary: "Fejlesztésvezető egy gépi tanulással támogatott IoT-rendszeren, amely orvostechnikai eszközöket figyel valós időben — a fizikai terméktől és a nyáktervtől kezdve."
+    highlights:
+      - "Gépi tanulással támogatott IoT-rendszer építése orvostechnikai eszközök valós idejű monitorozására"
+      - "Érintésmentes folyadékszintmérő fejlesztése vizeletgyűjtő zsákhoz és sebészeti drénhez"
+      - "Termék- és nyáktervezés"
+    stack:
+      - "IoT"
+      - "Gépi tanulás"
+      - "Nyáktervezés"
+    context: |
+      Egy érintésmentes folyadékszintmérő vizeletgyűjtő zsákhoz és sebészeti drénhez elsősorban méréstechnikai feladat, és csak másodsorban szoftveres: az érzékelő nem érhet hozzá ahhoz, amit mér, a leolvasásnak mégis megbízhatónak kell lennie egy kórházi osztályon.
+
+      Ez a pozíció a nyák- és terméktervezéstől a beágyazott rétegen át a fölötte futó, gépi tanulással támogatott monitorozásig tartott — egyetlen eszköz teljes mélységében, nem sok eszköz egyetlen rétegében.
+
+  - id: attadev-digital
+    company: "Attadev Digital Kft."
+    role: "Frontend fejlesztő"
+    start: "2019-11"
+    end: "2020-04"
+    location: "Budapest"
+    summary: "Sémavezérelt frontend munka: szabványos JSON séma alapú űrlapkezelés és JSON séma alapú blogmotor."
+    highlights:
+      - "Szabványos JSON séma alapú űrlapkezelés tervezése és fejlesztése"
+      - "JSON séma alapú blogmotor építése"
+    stack:
+      - "JSON Schema"
+    context: |
+      Mindkét feladat ugyanarra az ötletre épül: írjuk le egyszer az adat alakját, és a felület ebből a leírásból álljon elő ahelyett, hogy esetenként kézzel építenénk meg.
+
+      Ugyanez az ösztön végigfut az önéletrajz többi részén is — és mellesleg ezen az oldalon is, ahol minden oldal egy szótárfájlból renderelődik, nem kézzel írt markupból.
+
+  - id: clinicabroad-mpf-holding
+    company: "MPF Holding"
+    project: "Clinicabroad — kockázati tőke és technológia"
+    role: "Projekttag, fejlesztésvezető"
+    start: "2018-07"
+    end: "2019-10"
+    location: "Távmunka"
+    lead: true
+    summary: "Fejlesztésvezető egy magyar cégeket összekötő B2B piactéren, amely később a közép-kelet-európai régióra bővült, üzleti logikája pedig egy egészségturisztikai termékben újrahasznosult."
+    highlights:
+      - "B2B piactér alkalmazás fejlesztése magyar cégek összekapcsolására"
+      - "A projekt kiterjesztése a közép-kelet-európai régióra"
+      - "Az üzleti logika újrahasznosítása egészségturisztikai alkalmazásban"
+      - "SEO és tartalommarketing gyakorlatok bevezetése"
+    stack:
+      - "SEO"
+    context: |
+      Egy piactér, amely egyetlen nemzeti piacra készült, majd egy régióra bővült, kénytelen túlélni a saját kiinduló feltevéseinek a megváltozását: más országok, más elvárások, ugyanaz a mag.
+
+      Hogy az üzleti logika ezután egy második, egészségturisztikai termékben is felhasználható volt, ennek a bejegyzésnek a legbeszédesebb része: a domain modell elvált attól az alkalmazástól, amelyhez eredetileg írták.
+
+  - id: bertelsmann
+    company: "Bertelsmann Inc."
+    role: "Ügyfélkapcsolati munkatárs, EMEA"
+    start: "2017-08"
+    end: "2018-07"
+    location: "Berlin"
+    engineering: false
+    summary: "Egy év a fejlesztésen kívül: ügyfélkiszolgálás egy kiemelt nagyvállalati ügyfélnek EMEA-szerte, belső feltételek és nemzetközi jog mentén."
+    highlights:
+      - "Kiemelt nagyvállalati ügyfél kiszolgálása a megállapodott belső feltételek és a vonatkozó nemzetközi jog figyelembevételével"
+      - "Bevezetett globális szabályzatok értelmezése és alkalmazása az adott ország folyamataira"
+      - "Heti visszajelzés készítése a vezetés felé és csapatok közötti riportálás"
+      - "Iparági kutatás és kisebb ad-hoc projektek"
+    context: |
+      Ez az év nem szoftverfejlesztés, és az oldalon szereplő „év a szakmában” számba sem számít bele.
+
+      Azért van a listán, amit tartalmaz: globális szabályzatok lefordítását egyes országok folyamataira, heti riportálást csapatok között, és egyetlen igényes ügyfél tartását a megállapodott feltételekhez. Ez követelményelemzés és stakeholder-munka, olyan közegben, ahol a tévedésnek jogi következménye volt.
+
+  - id: tmx-mobile-solution
+    company: "TMX Mobile Solution Szervíz Kft."
+    role: "Szoftverfejlesztő"
+    start: "2015-04"
+    end: "2017-06"
+    location: "Budaörs"
+    summary: "Az első fejlesztői pozíció: valós idejű javításkövető és készletkezelő szoftverek a Samsung és a Vodafone szervizfolyamataiban."
+    highlights:
+      - "Valós idejű javításkövető és készletkezelő szoftverek fejlesztése és támogatása (Samsung, Vodafone)"
+      - "A cég belső szoftvereinek támogatása"
+      - "Középiskolás diákok mentorálása szoftverfejlesztésben"
+    context: |
+      A Samsung és a Vodafone szervizmunkájához készült javításkövetés és készletkezelés mögött valódi készülékek sora áll: ha a nyilvántartás téved, valakinek a telefonja tűnik el.
+
+      Két év ugyanannak a rendszernek az építésével, majd a támogatásával hasznos indítás egy pályán — az ember ismételten találkozik a saját döntéseinek a következményeivel. A középiskolások mentorálása is itt kezdődött, az első pozícióban, és később, az Align Technology-s években tért vissza.
+
+bottom_cta:
+  eyebrow: "NYITOTT VAGYOK AJÁNLATOKRA"
+  title: "Van ebben olyan, ami illik a pozícióhoz?"
+  description: "Küldje át a pozíció leírását, és őszintén megírom, hogy illik-e."
+  copy_label: "Cím másolása"
+  copied_label: "Kimásolva"

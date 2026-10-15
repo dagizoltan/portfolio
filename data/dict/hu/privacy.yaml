@@ -1,0 +1,44 @@
+head:
+  title: "Adatkezelés | Dági Zoltán"
+  description: "Mit gyűjt ez az oldal — gyakorlatilag semmit: nincs analitika, nincs süti, nincs követés. Egyetlen külső kérés van, a Google Fonts felé."
+
+hero:
+  eyebrow: "ADATKEZELÉS"
+  title: "Itt szinte semmi nem történik."
+  short_description: "Nincs analitika, nincs süti, nincs követés. Egyetlen külső betűtípus-kérés van, az alább olvasható."
+  description: "Ez egy személyes portfólió, nem szolgáltatás. Nincs rajta felhasználói fiók, űrlap vagy adatbázis, így kevés a mondanivaló — ami viszont van, az kertelés nélkül szerepel itt."
+
+updated: "Utoljára frissítve: 2026. október 15."
+
+sections:
+  - title: "Mit gyűjt ez az oldal"
+    body: |
+      Semmit. Nincs analitikai szkript, nincs követőpixel, nincs hirdetési hálózat, és ez az oldal nem helyez el sütit. A böngészőjében semmi nem tárolódik.
+
+      Kapcsolatfelvételi űrlap sincs, így beküldött adat sem keletkezik. A kapcsolat oldal egy mailto: címre mutat, amely az Ön saját levelezőprogramját nyitja meg — maga az oldal semmit nem továbbít.
+
+  - title: "Szerveroldali naplók"
+    body: |
+      Az oldalt kiszolgáló tárhely a szokásos kéréseket naplózza — IP-cím, időbélyeg, kért útvonal, böngészőazonosító —, ahogy jóformán minden webszerver. Ezeket a tárhelyszolgáltató platformja hozza létre, nem az oldal kódja, és kizárólag az üzemeltetéshez szolgálnak.
+
+  - title: "Az egyetlen külső kérés"
+    body: |
+      A stíluslap három betűtípust tölt be a Google Fonts szolgáltatásból. A böngészője ezeket a `fonts.googleapis.com` és a `fonts.gstatic.com` címről kéri le, ami azt jelenti, hogy a Google a kéréssel együtt megkapja az IP-címét és a böngészőazonosítóját.
+
+      Ez az egyetlen harmadik féltől érkező kérés az oldalon. Itt szerepel, nem elrejtve, és a betűtípusok saját kiszolgálása — ami ezt megszüntetné — szerepel a teendők között.
+
+  - title: "Ha e-mailt ír"
+    body: |
+      Az oldalon szereplő címre küldött levél egy Gmail-fiókba érkezik, a Google feltételei szerint. Kizárólag válaszadásra használom: nincs hírlevél, nincs CRM, nincs harmadik félnek átadás, nincs jelöltadatbázis.
+
+      Ha kéri egy üzenet törlését, törlöm.
+
+  - title: "Az Ön jogai"
+    body: |
+      A GDPR alapján kérheti, hogy tájékoztassam a kezelt személyes adatairól, kérheti azok helyesbítését vagy törlését, és tiltakozhat a kezelésük ellen. A gyakorlatban ez a nekem küldött e-mailek tartalmát jelenti.
+
+      Írjon a **dagizoltan@gmail.com** címre, és elintézem.
+
+  - title: "Változások"
+    body: |
+      Ha ez az oldal változik, a tetején lévő dátum is változik vele. Értesítés nincs, mert nincs hírlevél, amin értesíteni lehetne.

@@ -1,0 +1,210 @@
+head:
+  title: "Experience | Zoltán Dági — Software Developer"
+  description: "Eight years of software work: frontend engineering for Align Technology, incident tooling at EPAM, IoT and PCB development for medical devices, and B2B marketplace platforms."
+  keywords: "software developer experience, frontend engineer Budapest, Next.js developer, Node.js developer, AWS CloudFormation, IoT developer, embedded developer Hungary"
+
+hero:
+  eyebrow: "WORK HISTORY — 2015 TO 2024"
+  title: "Eight roles, one direction."
+  short_description: "Every role below is taken from my CV, with the dates and durations computed from the dates themselves."
+  description: "The path runs from repair-tracking software for Samsung and Vodafone service centres, through a venture-backed medical IoT device, to frontend engineering on Align Technology's patient-facing products.<br/><br/>Two of those roles were development lead positions, and one — a year at Bertelsmann in Berlin — was not engineering at all. Both are on the list, because leaving out the parts that do not fit the arc is how a CV stops being useful."
+  cta_primary: "Download CV (PDF)"
+  cta_primary_href: "/assets/zoltan-dagi-cv.pdf"
+  cta_primary_download: true
+
+metrics_labels:
+  years: "Years in software"
+  roles: "Roles"
+  companies: "Companies"
+  technologies: "Technologies"
+
+labels:
+  present: "Present"
+  detail: "Role detail"
+  back: "All roles"
+  lead: "Dev lead"
+  period: "Period"
+  duration: "Duration"
+  location: "Location"
+  company: "Company"
+  project: "Project"
+  spec: "Role spec"
+  what_i_did: "WHAT I DID"
+  context: "Context"
+  pager: "Other roles"
+  older: "Earlier role"
+  newer: "Later role"
+  view_all: "All eight roles"
+  named_tech: "Named in the CV"
+  named_tech_note: "Only technologies the CV names for this specific role are listed. The full stack is on the Stack page."
+
+# ---------------------------------------------------------------------------
+# Each entry is transcribed from the CV. `highlights` are the CV's own bullets.
+# `stack` lists ONLY technologies the CV names inside that role's own bullets —
+# it is deliberately not a complete list of what was used, because the CV does
+# not record that. `summary` and `context` are framing, not new claims.
+# `engineering: false` keeps a non-engineering role out of the years figure.
+# ---------------------------------------------------------------------------
+roles:
+  - id: sharp-web-solutions
+    company: "Sharp Web Solutions"
+    project: "Real-time remote identification system"
+    role: "Software Developer"
+    start: "2024-07"
+    end: "2024-12"
+    location: "Remote"
+    summary: "Core server work on a real-time remote identification system, across both the operator and client sides."
+    highlights:
+      - "Creating and testing core updates for operator and client side servers"
+      - "Testing database version updates"
+      - "Implementing workflows for real-time remote identifications"
+    context: |
+      Remote identification is a domain where the correctness bar is set by regulation rather than by preference: an identification either holds up or it does not.
+
+      The work sat on both sides of that system — the operator tooling and the client-facing side — which meant changes had to be reasoned about as a pair rather than shipped independently.
+
+  - id: ispyre-align-technology
+    company: "Ispyre Informatics"
+    project: "Web UI for Align Technology"
+    role: "Software Developer"
+    start: "2022-07"
+    end: "2023-11"
+    location: "Remote"
+    lead: true
+    summary: "Frontend engineering on Align Technology's patient-facing web products, including the MyInvisalign 3D treatment viewer, alongside mentoring and hiring."
+    highlights:
+      - "Building chat library for doctor - patient communications"
+      - "Upgrading Next.js framework for multiple projects"
+      - "Rebuilding user interface for MyInvisalign 3D treatment viewer"
+      - "Fixing security and package vulnerability issues"
+      - "Mentoring junior engineers"
+      - "Interviewing developers for various positions from junior to senior"
+    stack:
+      - "Next.js"
+      - "React"
+    context: |
+      The longest engineering run on the CV, and the one closest to product: Align Technology's treatment viewer is used by patients looking at their own 3D treatment plan, so the interface carries clinical information to people who are not clinicians.
+
+      The role was not only delivery. Framework upgrades across several projects, vulnerability remediation, mentoring juniors and interviewing candidates from junior through senior are the responsibilities a team gives to someone it trusts with its direction, not just its tickets.
+
+  - id: epam-vanhube
+    company: "EPAM"
+    project: "VANHUBE Bench — incident management tool"
+    role: "Software Engineer"
+    start: "2021-09"
+    end: "2022-04"
+    location: "Remote"
+    summary: "Refactoring an incident handling application onto AWS CloudFormation, with build tooling and cost work on the serverless side."
+    highlights:
+      - "Refactoring incident handler web application with AWS CloudFormation"
+      - "Integrating module bundler and coding standards for Node.js serverless functions"
+      - "Cost optimization and vulnerability fixes"
+    stack:
+      - "AWS CloudFormation"
+      - "Node.js"
+      - "AWS Lambda"
+    context: |
+      Incident tooling is infrastructure for other people's bad days, which puts a particular weight on reliability and on the cost of running it.
+
+      Alongside the CloudFormation refactor, this role covered the unglamorous half of a serverless codebase: a module bundler and enforced coding standards for the functions, plus cost optimisation and vulnerability fixes.
+
+  - id: renalevel-mpf-holding
+    company: "MPF Holding"
+    project: "RenaLevel — venture capital and technology"
+    role: "Project Member, Head of Development"
+    start: "2020-01"
+    end: "2021-08"
+    location: "Remote"
+    lead: true
+    summary: "Development lead on a machine-learning-assisted IoT system for monitoring medical devices in real time, including the physical product and its PCB."
+    highlights:
+      - "Building machine learning assisted IoT system for real-time monitoring medical devices"
+      - "Developing non-contact fluid level meter for urine bag and surgical drain"
+      - "Product and PCB design"
+    stack:
+      - "IoT"
+      - "Machine learning"
+      - "PCB design"
+    context: |
+      A non-contact fluid level meter for urine bags and surgical drains is a measurement problem before it is a software problem: the sensor cannot touch what it is measuring, and the reading has to be trustworthy enough for a ward.
+
+      This role went from PCB and product design through the embedded layer to the machine-learning-assisted monitoring on top — the full depth of one device rather than one layer of many.
+
+  - id: attadev-digital
+    company: "Attadev Digital Kft."
+    role: "Frontend Developer"
+    start: "2019-11"
+    end: "2020-04"
+    location: "Budapest"
+    summary: "Schema-driven frontend work: standard JSON-schema-based form handling and a JSON-schema-based blog engine."
+    highlights:
+      - "Designing and developing standard JSON schema-based form handling"
+      - "Building JSON schema based blog engine"
+    stack:
+      - "JSON Schema"
+    context: |
+      Both deliverables share one idea: describe the shape of the data once, then let the interface be generated from that description instead of hand-built per case.
+
+      It is the same instinct that runs through the rest of this CV — and, for what it is worth, through this site, where every page is rendered from a dictionary file rather than from markup.
+
+  - id: clinicabroad-mpf-holding
+    company: "MPF Holding"
+    project: "Clinicabroad — venture capital and technology"
+    role: "Project Member, Head of Development"
+    start: "2018-07"
+    end: "2019-10"
+    location: "Remote"
+    lead: true
+    summary: "Development lead on a B2B marketplace for Hungarian companies, extended into Central and Eastern Europe and reused for a health tourism product."
+    highlights:
+      - "Developing a B2B Marketplace app for connecting Hungarian companies"
+      - "Extending the project to the Central Eastern European Area"
+      - "Reusing the business logic in health tourism related app"
+      - "Implementing SEO and content marketing practices"
+    stack:
+      - "SEO"
+    context: |
+      A marketplace built for one national market and then extended across a region has to survive a change in its own assumptions — different countries, different expectations, the same core logic.
+
+      That the business logic was then reused for a second product in health tourism is the clearest signal in this entry: the domain model was separable from the application it was first written for.
+
+  - id: bertelsmann
+    company: "Bertelsmann Inc."
+    role: "Client Service Associate, EMEA"
+    start: "2017-08"
+    end: "2018-07"
+    location: "Berlin"
+    engineering: false
+    summary: "A year outside engineering: client service for a blue-chip account across EMEA, working to internal terms and international law."
+    highlights:
+      - "Providing service to an exclusive blue-chip client following agreed internal terms and considering industry relevant international law"
+      - "Understanding introduced global policy updates and applying them to the relevant country's processes"
+      - "Generating weekly feedback for management and cross-team reporting"
+      - "Conducting industry research and small ad-hoc projects as needed"
+    context: |
+      This year is not software, and it is not counted in the years-in-software figure on this site.
+
+      It is on the list because of what it covers: translating global policy into the processes of individual countries, reporting across teams every week, and holding a single demanding account to agreed terms. That is requirements work and stakeholder work, done in a setting where getting it wrong had legal consequences.
+
+  - id: tmx-mobile-solution
+    company: "TMX Mobile Solution Szervíz Kft."
+    role: "Software Developer"
+    start: "2015-04"
+    end: "2017-06"
+    location: "Budaörs"
+    summary: "First software role: real-time repair-tracking and stock management software used in Samsung and Vodafone service operations."
+    highlights:
+      - "Developing and supporting real-time repair-tracker and stock management softwares (Samsung, Vodafone)"
+      - "Supporting the internal softwares of the company"
+      - "Mentoring high-school students for software development"
+    context: |
+      Repair tracking and stock management for Samsung and Vodafone service work is software with a queue of real devices behind it: when the tracker is wrong, somebody's phone is lost.
+
+      Two years of building and then supporting the same systems is a useful way to start a career — you meet the consequences of your own decisions, repeatedly. Mentoring high-school students began here, in the first role, and recurs in the Align Technology years.
+
+bottom_cta:
+  eyebrow: "OPEN TO WORK"
+  title: "Any of this look like your opening?"
+  description: "Send the job description and I'll tell you honestly whether it's a fit."
+  copy_label: "Copy address"
+  copied_label: "Copied"

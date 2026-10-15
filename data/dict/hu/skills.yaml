@@ -1,0 +1,145 @@
+head:
+  title: "Technológiák | Dági Zoltán — szoftverfejlesztő"
+  description: "Dági Zoltán önéletrajzának teljes technológiai listája csoportosítva: JavaScript és TypeScript, React és Next.js, Node.js és Deno, AWS, Docker, beágyazott Rust és Arduino, Snyk és Checkmarx."
+  keywords: "JavaScript fejlesztő, TypeScript, React, Next.js, Node.js, Deno, Rust, AWS, Docker, beágyazott Rust, Arduino, PlatformIO, Mbed OS, webbiztonság"
+
+hero:
+  eyebrow: "A TECHNOLÓGIÁK"
+  title: "A teljes lista, csoportosítva."
+  short_description: "Ugyanaz, ami az önéletrajzban szerepel, aszerint rendezve, hogy mi mire való."
+  description: "Ez az önéletrajz technológiai listája, egyetlen tömb helyett aszerint csoportosítva, hogy mi mire való.<br/><br/>Azt mutatja, mivel dolgozom, nem azt, hogy mennyire jól — az önéletrajz sem állít szintet tételenként, és ez az oldal sem. Ha egy pozíciónál számít a konkrét mélység, kérdezzen rá, és egyenes választ kap."
+
+labels:
+  total: "Felsorolt technológia"
+
+# ---------------------------------------------------------------------------
+# Minden tétel szerepel az önéletrajzban. A csoportosítás szerkesztői döntés,
+# a tartalom nem az. Új tétel felvétele automatikusan módosítja a számokat ezen
+# az oldalon, a kezdőlapon és a számsávban — a szövegben sehol nem szerepel
+# beírt összeg.
+# ---------------------------------------------------------------------------
+groups:
+  - id: languages
+    name: "Nyelvek és jelölőnyelvek"
+    description: "A nyelvek, amelyeken a lista többi része meg van írva."
+    items:
+      - "JavaScript"
+      - "TypeScript"
+      - "ECMAScript"
+      - "CommonJS"
+      - "Rust"
+      - "PHP"
+      - "HTML"
+      - "CSS"
+      - "SASS"
+
+  - id: frontend
+    name: "Frontend"
+    description: "Felületfejlesztés — komponens-keretrendszerek, stílusmegoldások és designrendszerek."
+    items:
+      - "React"
+      - "Preact"
+      - "Next.js"
+      - "CSS-in-JS"
+      - "Keyframes"
+      - "Material UI"
+      - "Bootstrap"
+      - "Ramda"
+
+  - id: runtimes
+    name: "Futtatókörnyezetek és szolgáltatások"
+    description: "Szerveroldali futtatókörnyezetek, keretrendszerek és a köztük lévő protokollok."
+    items:
+      - "Node.js"
+      - "Deno"
+      - "Fresh"
+      - "Express"
+      - "Actix"
+      - "Symfony"
+      - "REST"
+      - "WebSocket"
+
+  - id: data
+    name: "Adat és keresés"
+    description: "Adattárolók, lekérdezési rétegek és az IoT-munkánál használt gépi tanulási könyvtár."
+    items:
+      - "MySQL"
+      - "MongoDB"
+      - "Mongoose"
+      - "Redis"
+      - "Elasticsearch"
+      - "TensorFlow"
+
+  - id: cloud
+    name: "Felhő és konténerek"
+    description: "Ahol fut, és ahogyan le van írva."
+    items:
+      - "AWS"
+      - "AWS CloudFormation"
+      - "Deno Deploy"
+      - "Docker"
+      - "Docker Compose"
+
+  - id: tooling
+    name: "Build, teszt és verziókezelés"
+    description: "Csomagolók, tesztfuttatók és a tárhelyek, ahol a munka él."
+    items:
+      - "Webpack"
+      - "Rollup"
+      - "SWC"
+      - "Mocha"
+      - "React Testing Library"
+      - "Git"
+      - "GitLab"
+      - "GitHub"
+      - "Bitbucket"
+
+  - id: embedded
+    name: "Beágyazott rendszerek"
+    description: "A hardveres oldal — az orvostechnikai IoT-eszköz mögötti eszközláncok."
+    items:
+      - "Arduino"
+      - "PlatformIO"
+      - "Mbed OS"
+      - "Embedded Rust"
+
+  - id: security
+    name: "Biztonság"
+    description: "Vizsgálat és javítás, az Align Technology és az EPAM munkáknál használva."
+    items:
+      - "Webbiztonság"
+      - "Snyk"
+      - "Checkmarx"
+
+  - id: process
+    name: "Módszertan"
+    description: "Ahogyan a munka szervezve van."
+    items:
+      - "Agile"
+      - "Scrum"
+      - "Kanban"
+
+secondary:
+  eyebrow: "MÁSODLAGOS KÉSZSÉGEK"
+  title: "Amik nem technológiai listák."
+  description: "Az önéletrajzban is külön szerepelnek, és itt is külön maradnak. Ezek inkább szakterületek, mint eszközök — miattuk létezik egyáltalán a fenti beágyazott csoport."
+  items:
+    - name: "UX és UI tervezés"
+      note: "Felülettervezés a megvalósítás mellett, nem helyette."
+    - name: "SEO"
+      note: "A Clinicabroad piactéren alkalmazva; a technikai fele, nem a tartalmi."
+    - name: "Beágyazott programozás"
+      note: "Az Arduino, PlatformIO, Mbed OS és beágyazott Rust tételek mögötti szakterület."
+    - name: "Nyáktervezés és -javítás"
+      note: "Paneltervezés és átdolgozás — a RenaLevel folyadékszintmérőnél használva."
+    - name: "CAD modellezés"
+      note: "Mechanikai tervezés egy hardveres termék burkolati oldalához."
+    - name: "3D nyomtatás"
+      note: "A fizikai alkatrészek prototipizálása beszállítóra várás helyett."
+
+bottom_cta:
+  eyebrow: "NYITOTT VAGYOK AJÁNLATOKRA"
+  title: "Valami konkrét kell ebből a listából?"
+  description: "Kérdezzen rá bármelyik tételre, és egyenes választ kap arról, hogy milyen mély."
+  copy_label: "Cím másolása"
+  copied_label: "Kimásolva"

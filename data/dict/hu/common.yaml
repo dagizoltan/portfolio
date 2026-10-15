@@ -1,0 +1,51 @@
+identity:
+  # A `name` és a `title` a logó-lockup, szándékosan nagybetűs.
+  # A `full_name` ugyanaz a név folyószövegben, oldalcímekhez és morzsamenühöz.
+  name: "DÁGI ZOLTÁN"
+  title: "SZOFTVERFEJLESZTŐ"
+  full_name: "Dági Zoltán"
+
+navigation:
+  - label: "Kezdőlap"
+    href: "/"
+  - label: "Tapasztalat"
+    href: "/experience"
+  - label: "Technológiák"
+    href: "/skills"
+  - label: "Rólam"
+    href: "/about"
+  - label: "Kapcsolat"
+    href: "/contact"
+
+slogan: "Frontend mélységben, hardveres gyökerekkel. Budapest."
+
+skip_link: "Ugrás a tartalomra"
+metrics_label: "Szakmai számok"
+
+cv:
+  label: "Önéletrajz letöltése (PDF)"
+  short_label: "CV"
+  href: "/assets/zoltan-dagi-cv.pdf"
+
+footer:
+  copyright: "© 2026 Dági Zoltán."
+  contact_title: "Elérhetőség"
+  privacy:
+    label: "Adatkezelés"
+    href: "/privacy"
+
+contact:
+  email: "dagizoltan@gmail.com"
+  phone: "+36 70 587 8519"
+  location: "Budapest — elsősorban távmunka"
+
+# Ide felvett profilok megjelennek a láblécben és a Person séma sameAs mezőjében.
+# Elérhető ikonok: github, linkedin, mail, phone, pin, clock.
+profiles: []
+
+bottom_cta:
+  eyebrow: "NYITOTT VAGYOK AJÁNLATOKRA"
+  title: "Beszéljünk a pozícióról."
+  description: "Olyan fejlesztőt keres, aki egy frontend feladatot végigvisz, de egy kapcsolási rajzot is elolvas? Küldje át a pozíció leírását, és őszintén megírom, hogy illik-e."
+  copy_label: "Cím másolása"
+  copied_label: "Kimásolva"

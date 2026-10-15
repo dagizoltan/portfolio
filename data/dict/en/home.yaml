@@ -1,0 +1,59 @@
+head:
+  title: "Zoltán Dági | Software Developer — Budapest"
+  description: "Software developer in Budapest with eight years across frontend engineering, Node.js and Deno services, and embedded systems. Worked on Align Technology's patient UI, EPAM incident tooling and a medical IoT device."
+  keywords: "software developer Budapest, frontend developer Hungary, React developer, Next.js developer, Node.js developer, Deno developer, embedded developer, remote software developer"
+
+hero:
+  eyebrow: "BUDAPEST, HUNGARY — AVAILABLE FOR WORK"
+  title: "Zoltán Dági"
+  role: "Software Developer"
+  short_description: "Eight years of software work, from patient-facing frontends to the PCB underneath a medical device."
+  description: "I build web interfaces for products where being wrong has a cost — a patient reading their own treatment plan, an operator confirming an identity, a service centre tracking somebody's phone.<br/><br/>The frontend is where most of that work happens: React and Next.js, in codebases that were already running when I arrived. The less usual half is underneath it — Node.js and Deno services, AWS infrastructure, and far enough down to design the board a sensor sits on.<br/><br/><strong>Based in Budapest. Most of the last eight years worked remotely.</strong>"
+  cta_primary: "See the work"
+  cta_primary_href: "/experience"
+  cta_secondary: "Download CV (PDF)"
+  cta_secondary_href: "/assets/zoltan-dagi-cv.pdf"
+  cta_secondary_download: true
+
+metrics_labels:
+  years: "Years in software"
+  roles: "Roles"
+  companies: "Companies"
+  technologies: "Technologies"
+
+practice:
+  eyebrow: "WHAT I ACTUALLY DO"
+  title: "Three layers, one person."
+  description: "Most developers are hired for one of these. The useful part of my CV is that the same person covers all three, which means fewer handovers when a problem turns out to live between them."
+  items:
+    - title: "Product frontend"
+      description: "React and Next.js work on existing products: rebuilding Align Technology's MyInvisalign 3D treatment viewer, building a doctor–patient chat library, and carrying framework upgrades across several projects at once."
+      tags: ["React", "Next.js", "TypeScript", "UX/UI"]
+    - title: "Services & infrastructure"
+      description: "Node.js and Deno on the server, AWS underneath. Refactoring an incident handler onto CloudFormation, imposing a bundler and coding standards on serverless functions, then cutting what it cost to run."
+      tags: ["Node.js", "Deno", "AWS", "Docker"]
+    - title: "Embedded & hardware"
+      description: "The part that is rarely on a frontend CV. A non-contact fluid level meter for urine bags and surgical drains — the sensor, the board it sits on, the embedded code, and the ML-assisted monitoring above it."
+      tags: ["Embedded Rust", "Arduino", "PCB design", "IoT"]
+
+recent:
+  eyebrow: "MOST RECENT"
+  title: "The last three roles."
+  description: "Newest first. The full history, with what each role involved, is on the experience page."
+  cta: "All eight roles"
+
+stack:
+  eyebrow: "THE STACK"
+  title: "What I work with."
+  body: |
+    The groups below hold the full technology list from my CV, sorted by what each thing is for.
+
+    The counts are read from the list itself rather than typed into this sentence, so they cannot drift out of date — which is, more or less, the same reason I prefer schema-driven interfaces to hand-built ones.
+  cta: "The full stack"
+
+bottom_cta:
+  eyebrow: "OPEN TO WORK"
+  title: "Let's talk about the role."
+  description: "Send the job description and I'll tell you honestly whether it's a fit — including when it isn't."
+  copy_label: "Copy address"
+  copied_label: "Copied"

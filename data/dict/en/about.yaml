@@ -1,0 +1,92 @@
+head:
+  title: "About | Zoltán Dági — Software Developer in Budapest"
+  description: "Automotive engineering at Budapest University of Technology and Economics, ten years of classical guitar, and eight years building software across frontend, services and embedded systems."
+  keywords: "about Zoltán Dági, software developer Budapest, Budapest University of Technology and Economics, Hungarian developer, English speaking developer Hungary"
+
+hero:
+  eyebrow: "ABOUT"
+  title: "Engineer first, developer second."
+  short_description: "Automotive engineering, then software — which is why the hardware half of the CV is there."
+  description: "I studied automotive engineering at Budapest University of Technology and Economics before writing software professionally, and that order explains most of what is unusual about my CV.<br/><br/>It is why a frontend developer has PCB design and CAD modelling on the list, why the medical IoT project went from sensor to board to interface rather than stopping at an API, and why I would rather understand the system underneath a problem than route around it.<br/><br/><strong>Hungarian native, fluent English, intermediate German.</strong>"
+  cta_primary: "Download CV (PDF)"
+  cta_primary_href: "/assets/zoltan-dagi-cv.pdf"
+  cta_primary_download: true
+
+metrics_labels:
+  years: "Years in software"
+  roles: "Roles"
+  companies: "Companies"
+  technologies: "Technologies"
+
+story:
+  eyebrow: "THE SHORT VERSION"
+  title: "How the path actually ran."
+  body: |
+    I started in 2015 writing repair-tracking and stock management software for a service operation handling Samsung and Vodafone devices. Not glamorous, and an unusually good teacher: when the tracker was wrong, a real phone was unaccounted for, and I was the one supporting the system that said so.
+
+    Two venture-backed projects followed, both as development lead. The first was a B2B marketplace for Hungarian companies that was extended across Central and Eastern Europe, then had its business logic reused for a second product in health tourism. The second was **RenaLevel** — a non-contact fluid level meter for urine bags and surgical drains, built from the PCB upwards with machine-learning-assisted monitoring on top.
+
+    From there the work moved toward larger codebases: incident tooling at **EPAM**, then the longest engineering run on the CV, building patient-facing web interfaces for **Align Technology** through Ispyre Informatics. That role included the MyInvisalign 3D treatment viewer, a doctor–patient chat library, framework upgrades across multiple projects, and enough trust to mentor juniors and interview candidates up to senior level.
+
+    There is also a year at **Bertelsmann** in Berlin that is not software at all. It is on the CV because client service for a blue-chip account across EMEA — translating global policy into one country's processes, reporting weekly across teams — turned out to be requirements work by another name.
+
+working:
+  eyebrow: "HOW I WORK"
+  title: "What a team gets."
+  description: "The CV lists these as soft skills. Stated as behaviour instead, they read more usefully — and more honestly."
+  items:
+    - title: "Agile problem-solver"
+      description: "Comfortable in Agile, Scrum and Kanban, but more interested in shipping the right thing than in running the ceremony correctly."
+    - title: "Highly adaptable"
+      description: "Eight roles, seven companies, four domains and three countries' worth of working contexts. Most of the codebases were already running when I arrived."
+    - title: "Works well alone"
+      description: "Most of the last eight years were remote, including two development lead roles. Unblocking myself is a habit, not an aspiration."
+    - title: "Collaborative"
+      description: "Mentored junior engineers at Align Technology and high-school students in my first role, and interviewed candidates from junior through senior."
+    - title: "Precision and creativity"
+      description: "The engineering training shows up as a preference for understanding a system before changing it — and the music training as a tolerance for doing a thing repeatedly until it is right."
+    - title: "Self-aware"
+      description: "Including about this list. Ask about a weak spot and you'll get the actual answer."
+
+education:
+  eyebrow: "EDUCATION"
+  title: "Where the training came from."
+  items:
+    - range: "2011 Sept — 2014 Jun"
+      subject: "Automotive Engineering"
+      school: "Budapest University of Technology and Economics"
+    - range: "2000 Sept — 2010 Jun"
+      subject: "Classical Guitar and Music Theory"
+      school: "Local Music School"
+    - range: "2003 Sept — 2011 Jun"
+      subject: "High School"
+      school: "Kempelen Farkas High School"
+
+languages:
+  eyebrow: "LANGUAGES"
+  title: "Working languages."
+  items:
+    - name: "Hungarian"
+      code: "hu"
+      level: "Native"
+    - name: "English"
+      code: "en"
+      level: "Fluent"
+    - name: "German"
+      code: "de"
+      level: "Intermediate"
+
+interests:
+  eyebrow: "OUTSIDE WORK"
+  items:
+    - "Skateboarding"
+    - "Bouldering"
+    - "Natural sciences"
+    - "Classical guitar"
+
+bottom_cta:
+  eyebrow: "OPEN TO WORK"
+  title: "Want the longer version?"
+  description: "Happy to talk through any part of this — including the year that isn't software."
+  copy_label: "Copy address"
+  copied_label: "Copied"

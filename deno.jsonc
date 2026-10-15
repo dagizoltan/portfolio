@@ -1,0 +1,13 @@
+{
+    "tasks": {
+        "start": "deno run -A src/bin/start.js"
+    },
+    "imports": {
+        "hono": "jsr:@hono/hono@^4.11.7",
+        "src/": "./src/"
+    },
+    "compilerOptions": {
+        "jsx": "precompile",
+        "jsxImportSource": "hono/jsx"
+    }
+}

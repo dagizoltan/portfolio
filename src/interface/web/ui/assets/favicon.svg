@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Zoltán Dági">
+  <rect width="64" height="64" fill="#01243F"/>
+  <!-- ZD monogram: green initial, orange counter-stroke, as on the CV masthead -->
+  <text x="32" y="43" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="34"
+        font-weight="300" letter-spacing="1" text-anchor="middle" fill="#3EB823">ZD</text>
+  <rect x="12" y="51" width="40" height="3" fill="#CC750C"/>
+</svg>

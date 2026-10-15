@@ -1,0 +1,92 @@
+head:
+  title: "Rólam | Dági Zoltán — szoftverfejlesztő, Budapest"
+  description: "Járműmérnöki tanulmányok a Budapesti Műszaki és Gazdaságtudományi Egyetemen, tíz év klasszikus gitár, és nyolc év szoftverfejlesztés a frontendtől a beágyazott rendszerekig."
+  keywords: "Dági Zoltán, szoftverfejlesztő Budapest, Budapesti Műszaki és Gazdaságtudományi Egyetem, magyar fejlesztő, angolul beszélő fejlesztő"
+
+hero:
+  eyebrow: "RÓLAM"
+  title: "Előbb mérnök, utána fejlesztő."
+  short_description: "Járműmérnöki tanulmányok, utána szoftver — ezért van egyáltalán hardveres fele az önéletrajznak."
+  description: "Járműmérnöknek tanultam a Budapesti Műszaki és Gazdaságtudományi Egyetemen, mielőtt hivatásszerűen szoftvert írtam volna, és ez a sorrend magyarázza a legtöbbet abból, ami szokatlan az önéletrajzomban.<br/><br/>Ezért van egy frontendes listáján nyáktervezés és CAD modellezés, ezért jutott el az orvostechnikai IoT-projekt az érzékelőtől a panelen át a felületig ahelyett, hogy megállt volna egy API-nál, és ezért inkább megértem a probléma alatti rendszert, mint hogy megkerüljem.<br/><br/><strong>Magyar anyanyelv, folyékony angol, középszintű német.</strong>"
+  cta_primary: "Önéletrajz letöltése (PDF)"
+  cta_primary_href: "/assets/zoltan-dagi-cv.pdf"
+  cta_primary_download: true
+
+metrics_labels:
+  years: "Év a szakmában"
+  roles: "Pozíció"
+  companies: "Cég"
+  technologies: "Technológia"
+
+story:
+  eyebrow: "A RÖVID VÁLTOZAT"
+  title: "Hogyan futott az út."
+  body: |
+    2015-ben javításkövető és készletkezelő szoftverrel kezdtem egy szerviznél, amely Samsung és Vodafone készülékekkel dolgozott. Nem látványos, viszont kivételesen jó tanár: ha a nyilvántartás tévedett, egy valódi telefon tűnt el, és én támogattam azt a rendszert, amelyik ezt állította.
+
+    Ezután két kockázati tőkéből épülő projekt következett, mindkettő fejlesztésvezetőként. Az első egy magyar cégeket összekötő B2B piactér volt, amely a közép-kelet-európai régióra bővült, üzleti logikája pedig később egy egészségturisztikai termékben hasznosult újra. A második a **RenaLevel** — érintésmentes folyadékszintmérő vizeletgyűjtő zsákhoz és sebészeti drénhez, a nyáktól felfelé építve, fölötte gépi tanulással támogatott monitorozással.
+
+    Innen a munka nagyobb kódbázisok felé mozdult: incidenskezelő eszköz az **EPAM**-nél, majd az önéletrajz leghosszabb fejlesztői szakasza, az **Align Technology** pácienseknek szóló webes felületei az Ispyre Informaticson keresztül. Ide tartozott a MyInvisalign 3D kezeléstervező nézője, egy orvos-páciens chat könyvtár, több projektet érintő keretrendszer-frissítés, és annyi bizalom, hogy juniorokat mentoráljak és senior szintig interjúztassak.
+
+    Van benne egy berlini év a **Bertelsmann**-nál is, ami egyáltalán nem szoftver. Azért szerepel az önéletrajzban, mert egy kiemelt nagyvállalati ügyfél EMEA-szintű kiszolgálása — globális szabályzatok lefordítása egy ország folyamataira, heti riportálás csapatok között — végül más néven ugyanaz volt: követelményelemzés.
+
+working:
+  eyebrow: "AHOGYAN DOLGOZOM"
+  title: "Amit a csapat kap."
+  description: "Az önéletrajz ezeket soft skillként sorolja fel. Viselkedésként megfogalmazva használhatóbbak — és őszintébbek."
+  items:
+    - title: "Agilis problémamegoldó"
+      description: "Otthonosan mozgok Agile, Scrum és Kanban keretek között, de jobban érdekel a helyes dolog kiadása, mint a ceremónia szabályos levezetése."
+    - title: "Jól alkalmazkodom"
+      description: "Nyolc pozíció, hét cég, négy szakterület és három ország munkakörnyezete. A kódbázisok többsége már futott, mire megérkeztem."
+    - title: "Önállóan is működöm"
+      description: "Az elmúlt nyolc év nagyobb része távmunka volt, köztük két fejlesztésvezetői pozíció. Az önálló kibontakozás nem cél, hanem szokás."
+    - title: "Együttműködő"
+      description: "Junior fejlesztőket mentoráltam az Align Technology-nál és középiskolásokat az első pozíciómban, valamint juniortól senior szintig interjúztattam."
+    - title: "Pontosság és kreativitás"
+      description: "A mérnöki képzés abban látszik, hogy előbb megértem a rendszert, és csak utána nyúlok hozzá — a zenei képzés pedig abban, hogy elviselem ugyanannak a sokadik ismétlését, amíg jó nem lesz."
+    - title: "Tisztában vagyok magammal"
+      description: "Ezzel a listával is. Kérdezzen rá egy gyenge pontra, és a valódi választ kapja."
+
+education:
+  eyebrow: "TANULMÁNYOK"
+  title: "Honnan jön a képzettség."
+  items:
+    - range: "2011. szept. — 2014. jún."
+      subject: "Járműmérnöki tanulmányok"
+      school: "Budapesti Műszaki és Gazdaságtudományi Egyetem"
+    - range: "2000. szept. — 2010. jún."
+      subject: "Klasszikus gitár és zeneelmélet"
+      school: "Helyi zeneiskola"
+    - range: "2003. szept. — 2011. jún."
+      subject: "Középiskola"
+      school: "Kempelen Farkas Gimnázium"
+
+languages:
+  eyebrow: "NYELVEK"
+  title: "Munkanyelvek."
+  items:
+    - name: "Magyar"
+      code: "hu"
+      level: "Anyanyelv"
+    - name: "Angol"
+      code: "en"
+      level: "Folyékony"
+    - name: "Német"
+      code: "de"
+      level: "Középszint"
+
+interests:
+  eyebrow: "MUNKÁN KÍVÜL"
+  items:
+    - "Gördeszka"
+    - "Falmászás"
+    - "Természettudományok"
+    - "Klasszikus gitár"
+
+bottom_cta:
+  eyebrow: "NYITOTT VAGYOK AJÁNLATOKRA"
+  title: "Érdekli a hosszabb változat?"
+  description: "Bármelyik részéről szívesen beszélek — arról az évről is, amelyik nem szoftver."
+  copy_label: "Cím másolása"
+  copied_label: "Kimásolva"
