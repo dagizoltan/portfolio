@@ -1,0 +1,166 @@
+.story-body { max-width: var(--text-max-width); }
+
+/* ---------------------------------------------------------------
+   Working — numbered by counter so the copy carries no indices
+   --------------------------------------------------------------- */
+.working-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: working;
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 850px) {
+    .working-list {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 3rem;
+    }
+}
+
+.working-item {
+    counter-increment: working;
+    padding-block: 1.75rem;
+    padding-left: 3rem;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+}
+
+.working-item::before {
+    content: counter(working, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-signal);
+}
+
+.working-title {
+    font-size: 1.125rem;
+    margin: 0 0 0.625rem;
+    line-height: 1.15;
+}
+
+.working-text {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 50ch;
+}
+
+/* ---------------------------------------------------------------
+   Two-column block — education beside languages
+   --------------------------------------------------------------- */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+}
+
+@media (min-width: 900px) {
+    .two-column {
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+        gap: 4rem;
+    }
+}
+
+/* ---------------------------------------------------------------
+   Education
+   --------------------------------------------------------------- */
+.education-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.education-item {
+    padding-block: 1.375rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.education-range {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-signal);
+    margin-bottom: 0.5rem;
+}
+
+.education-subject {
+    font-size: 1.125rem;
+    margin: 0 0 0.3rem;
+    line-height: 1.2;
+    color: var(--color-foreground);
+}
+
+.education-school {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------
+   Languages
+   --------------------------------------------------------------- */
+.language-list {
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.language-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 1.125rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.language-row dt {
+    font-size: 1rem;
+    color: var(--color-foreground);
+}
+
+.language-row dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-signal);
+}
+
+/* ---------------------------------------------------------------
+   Interests
+   --------------------------------------------------------------- */
+.interests { margin-top: 3rem; }
+
+.interests-label { margin-bottom: 1rem; }
+
+.interests-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.interests-item {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-foreground);
+    border: 1px solid var(--color-border);
+    padding: 0.4rem 0.7rem;
+}

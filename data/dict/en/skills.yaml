@@ -1,0 +1,144 @@
+head:
+  title: "Stack | Zoltán Dági — Software Developer"
+  description: "The full technology list from Zoltán Dági's CV, grouped: JavaScript and TypeScript, React and Next.js, Node.js and Deno, AWS, Docker, embedded Rust and Arduino, Snyk and Checkmarx."
+  keywords: "JavaScript developer, TypeScript, React, Next.js, Node.js, Deno, Rust, AWS, Docker, embedded Rust, Arduino, PlatformIO, Mbed OS, web security"
+
+hero:
+  eyebrow: "THE STACK"
+  title: "Everything on the list, grouped."
+  short_description: "The same technologies as the CV, sorted into the areas they belong to."
+  description: "This is the CV's technology list, regrouped by what each thing is for rather than printed as one block.<br/><br/>It is a list of what I work with, not a ranking of how well — the CV makes no claim about depth per item, and neither does this page. If a specific level matters for a role, ask and I'll answer straight."
+
+labels:
+  total: "Technologies listed"
+
+# ---------------------------------------------------------------------------
+# Every item here appears on the CV. Groups are an editorial arrangement; the
+# contents are not. Adding an item changes the counts on this page, the home
+# page and the metrics strip automatically — nothing states a total in prose.
+# ---------------------------------------------------------------------------
+groups:
+  - id: languages
+    name: "Languages & markup"
+    description: "The languages the rest of the list is written in."
+    items:
+      - "JavaScript"
+      - "TypeScript"
+      - "ECMAScript"
+      - "CommonJS"
+      - "Rust"
+      - "PHP"
+      - "HTML"
+      - "CSS"
+      - "SASS"
+
+  - id: frontend
+    name: "Frontend"
+    description: "Interface work — component frameworks, styling approaches and design systems."
+    items:
+      - "React"
+      - "Preact"
+      - "Next.js"
+      - "CSS-in-JS"
+      - "Keyframes"
+      - "Material UI"
+      - "Bootstrap"
+      - "Ramda"
+
+  - id: runtimes
+    name: "Runtimes & services"
+    description: "Server-side runtimes, frameworks and the protocols between them."
+    items:
+      - "Node.js"
+      - "Deno"
+      - "Fresh"
+      - "Express"
+      - "Actix"
+      - "Symfony"
+      - "REST"
+      - "WebSocket"
+
+  - id: data
+    name: "Data & search"
+    description: "Stores, query layers and the machine learning library used on the IoT work."
+    items:
+      - "MySQL"
+      - "MongoDB"
+      - "Mongoose"
+      - "Redis"
+      - "Elasticsearch"
+      - "TensorFlow"
+
+  - id: cloud
+    name: "Cloud & containers"
+    description: "Where it runs, and how it is described."
+    items:
+      - "AWS"
+      - "AWS CloudFormation"
+      - "Deno Deploy"
+      - "Docker"
+      - "Docker Compose"
+
+  - id: tooling
+    name: "Build, test & version control"
+    description: "Bundlers, test runners and the hosts the work lives on."
+    items:
+      - "Webpack"
+      - "Rollup"
+      - "SWC"
+      - "Mocha"
+      - "React Testing Library"
+      - "Git"
+      - "GitLab"
+      - "GitHub"
+      - "Bitbucket"
+
+  - id: embedded
+    name: "Embedded"
+    description: "The hardware side — the toolchains behind the medical IoT device."
+    items:
+      - "Arduino"
+      - "PlatformIO"
+      - "Mbed OS"
+      - "Embedded Rust"
+
+  - id: security
+    name: "Security"
+    description: "Scanning and remediation, used on the Align Technology and EPAM work."
+    items:
+      - "Web security"
+      - "Snyk"
+      - "Checkmarx"
+
+  - id: process
+    name: "Process"
+    description: "How the work gets organised."
+    items:
+      - "Agile"
+      - "Scrum"
+      - "Kanban"
+
+secondary:
+  eyebrow: "SECONDARY SKILLS"
+  title: "The things that are not a stack."
+  description: "These are listed separately on the CV, and they stay separate here. They are disciplines rather than tools — the reason the embedded group above exists at all."
+  items:
+    - name: "UX and UI design"
+      note: "Interface design alongside the implementation, not instead of it."
+    - name: "SEO"
+      note: "Applied on the Clinicabroad marketplace; the technical half rather than the content half."
+    - name: "Embedded programming"
+      note: "The discipline behind the Arduino, PlatformIO, Mbed OS and embedded Rust entries."
+    - name: "Designing and repairing PCB"
+      note: "Board design and rework — used on the RenaLevel fluid level meter."
+    - name: "CAD modeling"
+      note: "Mechanical design for the enclosure side of a hardware product."
+    - name: "3D printing"
+      note: "Prototyping the physical parts rather than waiting on a supplier."
+
+bottom_cta:
+  eyebrow: "OPEN TO WORK"
+  title: "Need something specific from this list?"
+  description: "Ask about any item here and you'll get a straight answer about how deep it goes."
+  copy_label: "Copy address"
+  copied_label: "Copied"

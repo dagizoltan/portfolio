@@ -1,0 +1,72 @@
+head:
+  title: "Contact | Zoltán Dági — Software Developer"
+  description: "Get in touch with Zoltán Dági, software developer in Budapest, Hungary. Email, phone, and what to send for a role, a contract or a technical question."
+  keywords: "contact software developer Budapest, hire React developer Hungary, remote developer contact, freelance developer Budapest"
+
+hero:
+  eyebrow: "CONTACT"
+  title: "Email is best."
+  short_description: "No form, no funnel. The address below reaches me directly."
+  description: "There is no contact form on this site. Mail reaches me directly, I read all of it, and I answer — including to say no when a role isn't a fit.<br/><br/>If it's about a position, the job description is the most useful thing you can send."
+
+channels:
+  eyebrow: "WHAT TO SEND"
+  title: "Three kinds of message."
+  description: "All three arrive at the same address. The distinction is about what makes a first message useful, not about routing."
+  items:
+    - tag: "ROLES"
+      title: "A position"
+      description: "Permanent or contract, remote or Budapest-based. Send the job description, the team's shape and the stack. You'll get a straight answer about fit, including when the answer is no."
+      email: "dagizoltan@gmail.com"
+    - tag: "PROJECTS"
+      title: "A piece of work"
+      description: "Frontend builds, a stalled Next.js upgrade, a Node or Deno service, or something with hardware at the bottom of it. Scope and timeline help more than a brief does."
+      email: "dagizoltan@gmail.com"
+    - tag: "QUESTIONS"
+      title: "A technical question"
+      description: "About anything on the stack page, or about how this site is built. Ask about a weak spot and you'll get the real answer rather than a sales one."
+      email: "dagizoltan@gmail.com"
+
+details:
+  eyebrow: "DETAILS"
+  title: "The practical facts."
+  items:
+    - label: "Email"
+      value: "dagizoltan@gmail.com"
+      href: "mailto:dagizoltan@gmail.com"
+    - label: "Phone"
+      value: "+36 70 587 8519"
+      href: "tel:+36705878519"
+    - label: "Based in"
+      value: "Budapest, Hungary"
+    - label: "Working style"
+      value: "Remote-first — most of the last eight years"
+    - label: "Languages"
+      value: "Hungarian (native), English (fluent), German (intermediate)"
+    - label: "Driving licence"
+      value: "Category B"
+  note: "Time zone is CET/CEST. Expect a reply within a couple of working days."
+
+faq:
+  eyebrow: "BEFORE YOU WRITE"
+  title: "Asked often enough."
+  items:
+    - question: "Are you available right now?"
+      answer: "Yes — open to permanent and contract engineering roles. Email is the fastest way to find out whether the timing works."
+    - question: "Remote, hybrid or on-site?"
+      answer: "Remote-first: most of the last eight years were remote, including two development lead roles. Budapest-based hybrid works too. Full relocation is a conversation rather than a yes."
+    - question: "Frontend, backend or embedded?"
+      answer: "Frontend is where most of the work has been, and it is the strongest of the three. Node.js and Deno services come next. Embedded is real but narrower — one serious medical IoT project rather than a decade of firmware."
+    - question: "Can you work in English?"
+      answer: "Yes. Fluent English, and the last eight years were in distributed teams working in English. Hungarian is native, German is intermediate."
+    - question: "Why is there a non-engineering year on your CV?"
+      answer: "The year at Bertelsmann in Berlin was client service for a blue-chip account across EMEA. It is on the CV because hiding a gap is worse than explaining one, and because the work itself — turning global policy into a country's processes and reporting weekly across teams — transferred more than it looks like it would."
+    - question: "What is this site built with?"
+      answer: "Deno and Hono with server-rendered JSX, no build step and no client-side framework. Every page is generated from YAML dictionaries, and every figure on it is counted from those files rather than typed in. Three of those technologies are on the stack page."
+
+bottom_cta:
+  eyebrow: "OPEN TO WORK"
+  title: "Send the job description."
+  description: "It is the fastest way to find out whether this is worth either of our time."
+  copy_label: "Copy address"
+  copied_label: "Copied"

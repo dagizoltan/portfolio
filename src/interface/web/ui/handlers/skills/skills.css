@@ -1,0 +1,120 @@
+/* ---------------------------------------------------------------
+   Skill groups
+
+   The CV sets its technology list in four colours. Here that rotation is
+   driven by the group's position rather than by proficiency: the CV states
+   which technologies Zoltán works with, not how well, and colouring a
+   judgement the document never makes would be inventing one.
+
+   Because the colour carries no meaning, nothing is lost if a reader cannot
+   separate the greens from the oranges — each group is named in the heading
+   directly above its own list.
+   --------------------------------------------------------------- */
+.skill-group {
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.skill-group:first-child { border-top: 0; padding-top: 0; }
+
+.skill-group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.skill-group-name {
+    font-size: var(--text-fluid-h3);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.skill-group-count {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    color: var(--color-text-muted);
+}
+
+.skill-group-description {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    max-width: var(--text-max-width);
+    margin: 0 0 1.75rem;
+}
+
+.skill-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-chip {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+}
+
+/* The four-colour rotation, in the CV's own order. */
+.skill-group--c0 .skill-chip { color: var(--color-signal); }
+.skill-group--c1 .skill-chip { color: var(--color-accent); }
+.skill-group--c2 .skill-chip { color: var(--color-foreground); }
+.skill-group--c3 .skill-chip { color: var(--color-text-muted); }
+
+.skill-group--c0 .skill-group-name { color: var(--color-signal); }
+.skill-group--c2 .skill-group-name,
+.skill-group--c3 .skill-group-name { color: var(--color-accent); }
+
+/* ---------------------------------------------------------------
+   Secondary skills — the things that are not a stack
+   --------------------------------------------------------------- */
+.secondary-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 760px) {
+    .secondary-list { grid-template-columns: repeat(2, 1fr); column-gap: 3rem; }
+}
+
+.secondary-item {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.25rem 1rem;
+    align-items: baseline;
+    padding-block: 1.125rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.secondary-index {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-signal);
+}
+
+.secondary-name {
+    font-size: 1rem;
+    color: var(--color-foreground);
+}
+
+.secondary-note {
+    grid-column: 2;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}

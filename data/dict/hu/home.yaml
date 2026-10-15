@@ -1,0 +1,59 @@
+head:
+  title: "Dági Zoltán | Szoftverfejlesztő — Budapest"
+  description: "Budapesti szoftverfejlesztő nyolc év tapasztalattal: frontend fejlesztés, Node.js és Deno szolgáltatások, beágyazott rendszerek. Az Align Technology páciensfelülete, EPAM incidenskezelő eszköz, orvostechnikai IoT-eszköz."
+  keywords: "szoftverfejlesztő Budapest, frontend fejlesztő Magyarország, React fejlesztő, Next.js fejlesztő, Node.js fejlesztő, Deno fejlesztő, beágyazott rendszerek, távmunka fejlesztő"
+
+hero:
+  eyebrow: "BUDAPEST — JELENLEG ELÉRHETŐ"
+  title: "Dági Zoltán"
+  role: "Szoftverfejlesztő"
+  short_description: "Nyolc év szoftveres munka a pácienseknek szóló felületektől az orvostechnikai eszköz nyákjáig."
+  description: "Olyan termékekhez építek webes felületet, ahol a tévedésnek ára van — egy páciens a saját kezelési tervét nézi, egy operátor azonosítást hagy jóvá, egy szerviz valakinek a telefonját követi.<br/><br/>A munka nagyobb része a frontendre esik: React és Next.js, jellemzően olyan kódbázisokban, amelyek már futottak, mire megérkeztem. A ritkább fele az, ami alatta van — Node.js és Deno szolgáltatások, AWS infrastruktúra, és elég mélyen ahhoz, hogy megtervezzem a panelt, amin az érzékelő ül.<br/><br/><strong>Budapesten élek. Az elmúlt nyolc év nagyobb részét távmunkában dolgoztam.</strong>"
+  cta_primary: "A munkáim"
+  cta_primary_href: "/experience"
+  cta_secondary: "Önéletrajz (PDF)"
+  cta_secondary_href: "/assets/zoltan-dagi-cv.pdf"
+  cta_secondary_download: true
+
+metrics_labels:
+  years: "Év a szakmában"
+  roles: "Pozíció"
+  companies: "Cég"
+  technologies: "Technológia"
+
+practice:
+  eyebrow: "AMIVEL VALÓJÁBAN FOGLALKOZOM"
+  title: "Három réteg, egy ember."
+  description: "A legtöbb fejlesztőt e három közül egyre veszik fel. Az önéletrajzomban az a használható rész, hogy ugyanaz az ember lefedi mindhármat — így kevesebb az átadás, amikor kiderül, hogy a hiba kettő között van."
+  items:
+    - title: "Termék-frontend"
+      description: "React és Next.js már futó termékeken: az Align Technology MyInvisalign 3D kezelésnézőjének újraépítése, orvos-páciens chat könyvtár fejlesztése, keretrendszer-frissítések egyszerre több projekten."
+      tags: ["React", "Next.js", "TypeScript", "UX/UI"]
+    - title: "Szolgáltatások és infrastruktúra"
+      description: "Node.js és Deno a szerveren, AWS alatta. Incidenskezelő refaktorálása CloudFormationre, modulcsomagoló és kódolási szabványok bevezetése serverless függvényekre, majd az üzemeltetés költségének csökkentése."
+      tags: ["Node.js", "Deno", "AWS", "Docker"]
+    - title: "Beágyazott rendszerek"
+      description: "Az a rész, ami ritkán szerepel frontendes önéletrajzban. Érintésmentes folyadékszintmérő vizeletgyűjtő zsákhoz és sebészeti drénhez — az érzékelő, a panel, a beágyazott kód és a fölötte futó, gépi tanulással támogatott monitorozás."
+      tags: ["Embedded Rust", "Arduino", "Nyáktervezés", "IoT"]
+
+recent:
+  eyebrow: "LEGUTÓBBI"
+  title: "Az utolsó három pozíció."
+  description: "A legfrissebbel kezdve. A teljes lista, pozíciónként kifejtve, a Tapasztalat oldalon van."
+  cta: "Mind a nyolc pozíció"
+
+stack:
+  eyebrow: "TECHNOLÓGIÁK"
+  title: "Amivel dolgozom."
+  body: |
+    Az alábbi csoportok az önéletrajzom teljes technológiai listáját tartalmazzák, aszerint rendezve, hogy mi mire való.
+
+    A darabszámokat az oldal magából a listából olvassa ki, nem ebbe a mondatba van beírva — így nem tud elavulni. Nagyjából ugyanezért szeretem a sémavezérelt felületeket a kézzel építettek helyett.
+  cta: "A teljes lista"
+
+bottom_cta:
+  eyebrow: "NYITOTT VAGYOK AJÁNLATOKRA"
+  title: "Beszéljünk a pozícióról."
+  description: "Küldje át a pozíció leírását, és őszintén megírom, hogy illik-e — azt is, ha nem."
+  copy_label: "Cím másolása"
+  copied_label: "Kimásolva"

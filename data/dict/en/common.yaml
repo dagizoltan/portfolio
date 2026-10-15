@@ -1,0 +1,51 @@
+identity:
+  # `name` and `title` are the wordmark lockup and are set in caps by design.
+  # `full_name` is the same person in prose case, for page titles and breadcrumbs.
+  name: "ZOLTÁN DÁGI"
+  title: "SOFTWARE DEVELOPER"
+  full_name: "Zoltán Dági"
+
+navigation:
+  - label: "Index"
+    href: "/"
+  - label: "Experience"
+    href: "/experience"
+  - label: "Stack"
+    href: "/skills"
+  - label: "About"
+    href: "/about"
+  - label: "Contact"
+    href: "/contact"
+
+slogan: "Frontend depth, embedded roots. Budapest, Hungary."
+
+skip_link: "Skip to content"
+metrics_label: "Career figures"
+
+cv:
+  label: "Download CV (PDF)"
+  short_label: "CV"
+  href: "/assets/zoltan-dagi-cv.pdf"
+
+footer:
+  copyright: "© 2026 Zoltán Dági."
+  contact_title: "Get in touch"
+  privacy:
+    label: "Privacy"
+    href: "/privacy"
+
+contact:
+  email: "dagizoltan@gmail.com"
+  phone: "+36 70 587 8519"
+  location: "Budapest, Hungary — remote-first"
+
+# Add profile links here and they appear in the footer and in the Person
+# schema's sameAs. Icons available: github, linkedin, mail, phone, pin, clock.
+profiles: []
+
+bottom_cta:
+  eyebrow: "OPEN TO WORK"
+  title: "Let's talk about the role."
+  description: "Looking for a developer who can take a frontend brief end to end and still read a schematic? Send the job description and I'll tell you honestly whether it's a fit."
+  copy_label: "Copy address"
+  copied_label: "Copied"

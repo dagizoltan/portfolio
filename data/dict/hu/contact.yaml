@@ -1,0 +1,72 @@
+head:
+  title: "Kapcsolat | Dági Zoltán — szoftverfejlesztő"
+  description: "Lépjen kapcsolatba Dági Zoltán budapesti szoftverfejlesztővel. E-mail, telefon, és hogy mit érdemes küldeni egy pozícióhoz, egy megbízáshoz vagy egy technikai kérdéshez."
+  keywords: "szoftverfejlesztő kapcsolat Budapest, React fejlesztő felvétele, távmunka fejlesztő elérhetőség, szabadúszó fejlesztő Budapest"
+
+hero:
+  eyebrow: "KAPCSOLAT"
+  title: "Az e-mail a legjobb."
+  short_description: "Nincs űrlap, nincs tölcsér. Az alábbi cím közvetlenül elér."
+  description: "Ezen az oldalon nincs kapcsolatfelvételi űrlap. A levél közvetlenül hozzám érkezik, mindet elolvasom, és válaszolok is — arra is, ha egy pozíció nem illik.<br/><br/>Ha pozícióról van szó, a pozíció leírása a leghasznosabb, amit küldeni lehet."
+
+channels:
+  eyebrow: "MIT ÉRDEMES KÜLDENI"
+  title: "Háromféle megkeresés."
+  description: "Mindhárom ugyanarra a címre érkezik. A különbségtétel nem irányításról szól, hanem arról, mitől lesz hasznos egy első üzenet."
+  items:
+    - tag: "POZÍCIÓ"
+      title: "Egy állás"
+      description: "Alkalmazotti vagy vállalkozói, távmunkában vagy Budapesten. Küldje a pozíció leírását, a csapat felépítését és a stacket. Egyenes választ kap arról, hogy illik-e — akkor is, ha a válasz nem."
+      email: "dagizoltan@gmail.com"
+    - tag: "PROJEKT"
+      title: "Egy konkrét munka"
+      description: "Frontend fejlesztés, elakadt Next.js frissítés, Node vagy Deno szolgáltatás, esetleg valami, aminek hardver van az alján. A terjedelem és a határidő többet segít, mint egy brief."
+      email: "dagizoltan@gmail.com"
+    - tag: "KÉRDÉS"
+      title: "Egy technikai kérdés"
+      description: "Bármiről a Technológiák oldalról, vagy arról, hogyan épül fel ez az oldal. Kérdezzen rá egy gyenge pontra, és a valódi választ kapja, nem egy értékesítésit."
+      email: "dagizoltan@gmail.com"
+
+details:
+  eyebrow: "ADATOK"
+  title: "A gyakorlati tudnivalók."
+  items:
+    - label: "E-mail"
+      value: "dagizoltan@gmail.com"
+      href: "mailto:dagizoltan@gmail.com"
+    - label: "Telefon"
+      value: "+36 70 587 8519"
+      href: "tel:+36705878519"
+    - label: "Lakhely"
+      value: "Budapest, Magyarország"
+    - label: "Munkavégzés"
+      value: "Elsősorban távmunka — az elmúlt nyolc év nagyobb részében"
+    - label: "Nyelvek"
+      value: "Magyar (anyanyelv), angol (folyékony), német (középszint)"
+    - label: "Jogosítvány"
+      value: "B kategória"
+  note: "Az időzóna CET/CEST. Válasz jellemzően pár munkanapon belül."
+
+faq:
+  eyebrow: "MIELŐTT ÍRNA"
+  title: "Elég gyakori kérdések."
+  items:
+    - question: "Elérhető most?"
+      answer: "Igen — nyitott vagyok alkalmazotti és vállalkozói fejlesztői pozíciókra is. Az e-mail a leggyorsabb módja annak, hogy kiderüljön, az időzítés is stimmel-e."
+    - question: "Távmunka, hibrid vagy irodai?"
+      answer: "Elsősorban távmunka: az elmúlt nyolc év nagyobb része így telt, köztük két fejlesztésvezetői pozíció. A budapesti hibrid is működik. A teljes költözés inkább beszélgetés, mint igen."
+    - question: "Frontend, backend vagy beágyazott?"
+      answer: "A munka nagyobb része frontend volt, és a három közül ez a legerősebb. Ezt követik a Node.js és Deno szolgáltatások. A beágyazott valós, de szűkebb — egy komoly orvostechnikai IoT-projekt, nem egy évtizednyi firmware."
+    - question: "Tud angolul dolgozni?"
+      answer: "Igen. Folyékony angol, és az elmúlt nyolc év elosztott, angolul működő csapatokban telt. A magyar anyanyelv, a német középszint."
+    - question: "Miért van az önéletrajzban egy nem fejlesztői év?"
+      answer: "A berlini Bertelsmann-év egy kiemelt nagyvállalati ügyfél kiszolgálása volt EMEA-szerte. Azért szerepel, mert egy rést elrejteni rosszabb, mint megmagyarázni — és mert maga a munka, vagyis globális szabályzatok lefordítása egy ország folyamataira és a heti, csapatok közötti riportálás, többet hozott át, mint amennyinek látszik."
+    - question: "Mivel készült ez az oldal?"
+      answer: "Deno és Hono, szerveroldalon renderelt JSX-szel, build lépés és kliensoldali keretrendszer nélkül. Minden oldal YAML szótárakból áll elő, és minden szám rajta ezekből a fájlokból van megszámolva, nem beírva. A felsorolt technológiákból három szerepel a Technológiák oldalon is."
+
+bottom_cta:
+  eyebrow: "NYITOTT VAGYOK AJÁNLATOKRA"
+  title: "Küldje át a pozíció leírását."
+  description: "Ez a leggyorsabb módja annak, hogy kiderüljön, megéri-e mindkettőnk idejét."
+  copy_label: "Cím másolása"
+  copied_label: "Kimásolva"
