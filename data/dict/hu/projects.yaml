@@ -1,0 +1,205 @@
+head:
+  title: "Projektek | Dági Zoltán — szoftverfejlesztő"
+  description: "Négy saját mérnöki projekt 2026-tól: UAV repülésvezérlő, valós idejű hangmotor, hosztbiztonsági orchestrátor és többügynökös orchestrációs motor. Rust, Deno, TypeScript és eBPF."
+  keywords: "Rust fejlesztő portfólió, valós idejű rendszerek, beágyazott Rust, eBPF, Deno fejlesztő, többügynökös orchestráció, UAV repülésvezérlés, audio DSP, Budapest"
+
+hero:
+  eyebrow: "SAJÁT PROJEKTEK — 2026"
+  title: "Négy rendszer, a határok kereséséhez."
+  short_description: "Erre ment el az elmúlt két év: négy mérnöki projekt, egyik sem megrendelésre, egyik sem hétvégi munka."
+  description: "2024 vége után nem vállaltam új pozíciót, hanem tanulásra fordítottam az időt — először az AI-ügynökökre és arra, hogyan lehet velük dolgozni, aztán az alábbi rendszerekre.<br/><br/>Ezek nem termékek, és egyik sem került ügyfélhez. Olyan területek, ahol azt kerestem, amit még nem tudtam: valós idejű garanciák, kernelszintű hálózatkezelés, biztonságkritikus szabályozási hurkok, és olyan folyamatok összehangolása, amelyek külön-külön is elromolhatnak.<br/><br/><strong>A forráskód privát. Bármelyiket szívesen végigveszem egy beszélgetésen, vagy kérésre hozzáférést adok egy adott repóhoz.</strong>"
+  cta_primary: "Beszéljünk róla"
+  cta_primary_href: "/contact"
+  cta_secondary: "Önéletrajz letöltése (PDF)"
+  cta_secondary_href: "/assets/zoltan-dagi-cv.pdf"
+  cta_secondary_download: true
+
+metrics_labels:
+  projects: "Projekt"
+  commits: "Commit"
+  tests: "Teszt"
+  lines: "Forrássor"
+
+labels:
+  present: "Aktív"
+  detail: "Részletek"
+  back: "Összes projekt"
+  period: "Időszak"
+  duration: "Időtartam"
+  language: "Fő nyelv"
+  status: "Állapot"
+  spec: "Adatok"
+  what_it_does: "MIT CSINÁL"
+  context: "Miért építettem"
+  figures: "Számok"
+  commits: "Commit"
+  tests: "Teszt"
+  lines: "Forrássor"
+  modules: "Modul"
+  stack: "Technológiák"
+  pager: "További projektek"
+  older: "Korábbi projekt"
+  newer: "Későbbi projekt"
+  view_all: "Mind a négy projekt"
+  source: "Forráskód"
+  source_private: "Privát — kérésre hozzáférhető"
+  counted_note: "A commit-, teszt- és sorszámokat a repóból olvastuk ki, nem becslés."
+
+# ---------------------------------------------------------------------------
+# Saját projektek, 2026. Minden bejegyzés `figures` mezője a repóból mért adat:
+# a `commits` a git előzményekből, a `tests` a forrásban lévő tesztattribútumokból
+# és -regisztrációkból, a `lines` a verziókövetett forrásfájlokból. Számolt
+# értékek, nem becslések, és mennyiséget írnak le — nem minőséget és nem
+# érettséget.
+#
+# A `status` szándékosan az első dolog, amit az olvasó a részletes oldalon lát.
+# Ezek közül egyik sem kiadott termék, és az oldal nem sugallhat mást.
+# ---------------------------------------------------------------------------
+disclosure:
+  eyebrow: "EZT OLVASD EL ELŐSZÖR"
+  title: "Mik ezek, és mik nem."
+  body: |
+    **Nem termékek.** Egyik sem került ügyfélhez, egyikhez sem tartozik támogatási vállalás, és egyiket sem auditálta külső fél. Mindegyik projekt a saját oldalán, a saját szavaival mondja meg, hol tart — nem marketingszöveggel.
+
+    **Nem megrendelésre készültek.** Nincs mögöttük munkáltató, feladatkiírás vagy mások által szabott határidő. Pontosan ez a lényegük: a korlátokat úgy választottam, hogy nehezek legyenek, nem úgy, hogy üzletiek.
+
+    **A számok mérésből származnak.** A commitokat, teszteket és forrássorokat a repókból számoltuk ki. Azt írják le, hogy mennyi van — ami gyengébb állítás, mint amilyennek látszik: a mennyiség nem minőség. Azért vannak itt, mert ez az oldal arra a kérdésre válaszol, hogy mire ment el két év, és ez a kérdés részben mennyiségi.
+
+    **A forráskód privát.** Szívesen végigveszem bármelyiket egy beszélgetésen, vagy adok hozzáférést egy adott repóhoz, ha inkább magad olvasnád.
+
+projects:
+  - id: uavctrl
+    name: "uavctrl"
+    kind: "Repülésvezérlés"
+    tagline: "Biztonságkritikus repülésvezérlés 166 m/s-nál."
+    start: "2026-08"
+    end: "2026-10"
+    language: "Rust"
+    status: "Beépített járműmodell ellen végigrepül egy validált küldetést. Valódi repülőgépet még nem vezérelt."
+    summary: "Moduláris UAV-vezérlő orchestrátor nagy sebességű merevszárnyú géphez, MAVLink-interoperabilitással, elérhetőség-tudatos biztonsági kernellel és észlelési pipeline-nal."
+    highlights:
+      - "Elérhetőség-tudatos biztonsági kernel, amely a repülési burkolathoz méri a parancsokat"
+      - "Fekete doboz, amelynek visszajátszó-ellenőrzője bitpontosan újrafuttatja a rögzített repülést"
+      - "MAVLink 2 bejövő parancshitelesítés aláírással, és átkapcsolás a kapcsolatok között"
+      - "Külön folyamatba szervezett észlelési démon, amely a repülésvezérlő magot táplálja"
+      - "Az alaprétegek és a biztonsági kernel bare-metal célra is fordulnak"
+    figures:
+      commits: 560
+      tests: 1046
+      lines: 84390
+      modules: 21
+    stack:
+      - "Rust"
+      - "MAVLink 2"
+      - "no_std"
+      - "Tokio"
+      - "YOLO"
+    context: |
+      A terv egyetlen számból következik. Egy merevszárnyú gép 600 km/h-nál 166,7 m/s-mal halad: ezredmásodpercenként 0,17 métert, 16,7 métert annyi idő alatt, amennyi egy átlagos webkérés kiszolgálása, és 4 g-nél 731 méteres fordulósugárral.
+
+      Ettől szinte minden érdekes kérdés határidőkérdéssé válik. Mennyire késhet egy parancs ahhoz, hogy még biztonságos legyen végrehajtani? Mit tegyen a biztonsági kernel, ha nem tudja bizonyítani, hogy a gép vissza tud térni? Egy *általában* gyors szabályozó ezen a sebességen nem szabályozó — ezért a biztonsági réteg elérhetőségben gondolkodik, nem alapjelekben.
+
+      Az őszinte állapot a repó saját auditdokumentumában áll: több alrendszer — rajháló, 4D-s ütközéselkerülés, terep-sugárkövetés — lefordul, de semmi nem hívja meg. A hardware-in-the-loop pad törölve lett, nem megjavítva. Ezt leírni hasznosabb volt, mint csendben kihagyni.
+
+  - id: nullherz
+    name: "nullherz"
+    kind: "Valós idejű hang"
+    tagline: "Valós idejű hang, nulla allokációval a forró úton."
+    start: "2026-05"
+    language: "Rust"
+    status: "Aktív fejlesztés alatt. A hangmotor és a valós idejű garanciái a kész rész; a köré épülő programcsomag nem az."
+    summary: "Stúdiószoftver-csomag valós idejű Rust hangmotorra építve, kemény nulla-allokációs garanciával a feldolgozási úton."
+    highlights:
+      - "Hármas síkelkülönítés — vezérlés, protokoll, végrehajtás — architekturális invariánsként kikényszerítve"
+      - "Zármentes SPSC és MPSC gyűrűpufferek a síkok közötti egyetlen csatornaként"
+      - "Se allokáció, se zár, se I/O a hang-visszahívásban"
+      - "A gráftopológia Kahn-algoritmussal fordul, a hangszálon kívül"
+      - "Sidecar SDK és proc-macro réteg külső feldolgozókhoz"
+    figures:
+      commits: 1731
+      tests: 1098
+      lines: 141297
+      modules: 21
+    stack:
+      - "Rust"
+      - "Zármentes párhuzamosság"
+      - "DSP"
+      - "Proc makrók"
+      - "Valós idejű hang"
+    context: |
+      A valós idejű hang olyan határidős rendszer, amelynek szokatlanul kíméletlen a hibamódja: ha lecsúszol a pufferről, a hallgató azonnal hallja. Nincs újrapróbálkozás, nincs fokozatos romlás, nincs töltőképernyő.
+
+      Ettől a hétköznapi kényelmi megoldások hibává válnak. Egy heap-allokáció a feldolgozó visszahívásban akkor is hiba, ha soha nem bukik el, mert az allokátor legrosszabb esete nem korlátos. Ugyanígy egy mutex, egy naplósor, egy fájlolvasás. A kódbázis arra épül, hogy ezek egyetlen konkrét kódútból kimaradjanak, és az ezt kikényszerítő architekturális szabályok invariánsként le vannak írva, nem szájhagyományként élnek.
+
+      A legdrágább tanulság nem is a hangszálon volt. A vezérlő parancsútja táplálja a valós idejű gyűrűt, tehát az is késleltetéskritikus — egy soron belüli fájldekódolás az egyik parancskezelőben egyszer másodpercekre befagyasztott minden sorban álló parancsot, a lejátszást is. A dekódolás háttérszálra került, a kezelő pedig a befejezéskor fut tovább.
+
+  - id: sovereign
+    name: "Sovereign"
+    kind: "Hosztbiztonság"
+    tagline: "Kernelszintű betartatás Deno vezérlősík alatt."
+    start: "2026-04"
+    language: "TypeScript, Rust"
+    status: "Fejlesztési fázis. Csak Linux x86_64, nem támogatott termék, és nincs éles üzemeltetés."
+    summary: "Hosztbiztonsági orchestrátor: Deno vezérlősík, amely Rust sidecar ügynököket és a kernel hálózati útjában futó eBPF-komponenseket irányít."
+    highlights:
+      - "eBPF tűzfal és átjáró a kernel hálózati útjában"
+      - "Tizenkét Rust sidecar — tűzfal, csalétek, elemző, végrehajtó, netcap, proxy, VPN, bizalmi gyökér, fájlfigyelő"
+      - "Aláírt sidecar-integritásjegyzék, generált SBOM, első induláskor CSPRNG-vel készülő titkok"
+      - "TLS-es irányítópult és tokenes API, induláskor kiírt hitelesítő adatok nélkül"
+      - "Négy vezérlősík-alkalmazás: orchestrátor, diszpécser, hírszerzési központ, flottavezérlés"
+    figures:
+      commits: 1413
+      tests: 1475
+      lines: 129660
+      modules: 16
+    stack:
+      - "Deno"
+      - "TypeScript"
+      - "Rust"
+      - "eBPF"
+      - "WireGuard"
+    context: |
+      A hosztbiztonságban az az érdekes korlát, hogy a vezérlősík és a vezérelt dolog bizalmi tulajdonságai eltérnek. Egy TypeScriptben írt irányítópult kényelmes hely a szabályok megfogalmazására, és rossz hely a betartatásukra; egy eBPF-program a kernel útjában épp fordítva.
+
+      A rendszer e mentén a vonal mentén válik ketté. A szabályok, az állapot és a kezelői felület a Deno vezérlősíkon él. A betartatás kis Rust sidecarokban és eBPF-ben, mindegyik szűk feladattal és aláírt integritásjegyzékkel, hogy a vezérlősík meg tudja mondani, valóban azzal a binárissal beszél-e, amelyikkel hiszi.
+
+      A köré épült biztonsági állványzat — SBOM-generálás, első induláskor CSPRNG-vel készülő titkok, hitelesítő adatokat nem kiíró indulás — azért van, mert egy biztonsági eszköz, amely a saját ellátási láncával hanyag, önmaga ellen szóló érv. A TPM-alapú tanúsítás, az éles aláírás és a hardveres validáció nyitott kérdés, és a repó ezt ki is mondja.
+
+  - id: codepipe
+    name: "codepipe"
+    kind: "Ügynök-orchestráció"
+    tagline: "Eseményforrásolt orchestráció AI-ügynökcsapatoknak."
+    start: "2026-03"
+    language: "TypeScript"
+    status: "Aktív fejlesztés alatt. A motor és az MCP-szerverei futnak; működő rendszer, de nem kiadott."
+    summary: "Eseményvezérelt orchestrációs motor, amely AI-ügynökökből álló csapatot vezet végig a beérkezés, tervezés, építés és összefésülés életcikluson."
+    highlights:
+      - "Eseményforrásolt munkafolyamat-motor Deno KV-n — minden állapotátmenet rögzített és visszajátszható"
+      - "Tranzakciós outbox a megbízható eseménykézbesítéshez elosztott ügynökök között"
+      - "Többügynökös konszenzus: a kritikus változások vitaprotokollon mennek át az összefésülés előtt"
+      - "Párhuzamos megvalósítási hipotézisek, bíró ügynök döntésével"
+      - "Nyolc MCP-eszközszerver, amely elválasztja az ügynökök gondolkodását a rendszer-hozzáféréstől"
+    figures:
+      commits: 482
+      tests: 174
+      lines: 26581
+      modules: 13
+    stack:
+      - "Deno"
+      - "TypeScript"
+      - "Deno KV"
+      - "MCP"
+      - "Eseményforrásolás"
+    context: |
+      Az ügynökök másképp hibáznak, mint a hagyományos szolgáltatások. Részlegesen hibáznak, hihetően hibáznak, és úgy hibáznak, hogy az sikernek látszik egészen addig, amíg valami lejjebb alaposan el nem olvassa a kimenetet. Ettől a szokásos kérés-válasz forma rossz illeszkedés: mire kiderül, hogy egy lépés elromlott, az általa előállított állapot már három lépéssel a probléma fölött jár.
+
+      Erre volt válasz az eseményforrásolás. A beérkezéstől a tervezésen és építésen át az összefésülésig minden átmenet külön eseményként rögzül, így egy futás visszajátszható, bármely ponton megvizsgálható, és folytatható ahelyett, hogy elölről kellene kezdeni. A tranzakciós outbox akkor is megbízhatóvá teszi a kézbesítést, ha egy ügynökfolyamat lépés közben hal meg.
+
+      A legérdekesebb rész az volt, mi történjen, ha az ügynökök nem értenek egyet. A kritikus változások vitaprotokollon mennek át, ahol több modellnek kell közös nevezőre jutnia, a valóban nehéz feladatoknál pedig a motor párhuzamos megvalósításokat indít, és bíró ügynök választ közülük. Mindkettő drága, ami maga is tervezési korlát — a költségmodell az architektúra része, nem utólagos szempont.
+
+bottom_cta:
+  eyebrow: "NYITOTT VAGYOK AJÁNLATOKRA"
+  title: "Elolvasnád valamelyiket?"
+  description: "Kérj hozzáférést egy konkrét repóhoz, vagy küldd el az álláshirdetést, és megmondom, melyik releváns belőle."
+  copy_label: "Cím másolása"
+  copied_label: "Kimásolva"

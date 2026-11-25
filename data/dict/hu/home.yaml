@@ -42,6 +42,14 @@ recent:
   description: "A legfrissebbel kezdve. A teljes lista, pozíciónként kifejtve, a Tapasztalat oldalon van."
   cta: "Mind a nyolc pozíció"
 
+projects:
+  eyebrow: "SAJÁT MUNKA — 2026"
+  title: "Erre ment el az elmúlt két év."
+  description: "Négy mérnöki projekt, egyik sem megrendelésre készült, és egyik sem kiadott termék. A kártyákon lévő számok a repókból származnak; hogy ezek mik és mik nem, azt a projektek oldal fejti ki."
+  figure_commits: "commit"
+  figure_tests: "teszt"
+  cta: "Mind a négy projekt"
+
 stack:
   eyebrow: "TECHNOLÓGIÁK"
   title: "Amivel dolgozom."

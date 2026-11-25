@@ -142,3 +142,100 @@
     letter-spacing: 0.04em;
     color: var(--color-text-muted);
 }
+
+/* ---------------------------------------------------------------
+   Projects teaser — the self-directed work
+
+   Same hairline construction as .stack-grid: the container draws the top and
+   left edge, each card draws its own right and bottom. Do not switch to the
+   `gap: 1px` trick — it paints the border colour through the empty cells of
+   an incomplete final row.
+   --------------------------------------------------------------- */
+.home-project-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+}
+
+@media (min-width: 720px) {
+    .home-project-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.home-project-card {
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.home-project-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100%;
+    padding: 1.625rem 1.5rem;
+}
+
+.home-project-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.home-project-name {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 1.375rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    color: var(--color-foreground);
+}
+
+.home-project-link:hover .home-project-name { color: var(--color-accent); }
+
+.home-project-range {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-signal);
+}
+
+.home-project-kind {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-text-muted);
+}
+
+.home-project-tagline {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-foreground);
+    margin-top: 0.35rem;
+}
+
+/* Measured figures, pushed to the bottom so every card's footer lines up
+   however long the tagline runs. */
+.home-project-figures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+    margin-top: auto;
+    padding-top: 1.125rem;
+}
+
+.home-project-figure {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-accent);
+}

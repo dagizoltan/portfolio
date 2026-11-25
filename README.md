@@ -21,6 +21,7 @@ src/interface/web/
     lib/
       routes.js                 buildUrl(lang, path)
       experience.js             date maths — durations, ordering, totals
+      projects.js               project ordering, totals, number formatting
       metrics.js                headline figures, counted from the dictionaries
       rich-text.js              **bold** / *italic* + paragraphs for YAML copy
       seo/site.js               single source of truth for site identity
@@ -40,9 +41,11 @@ never a component.
 
 | Route | Notes |
 |---|---|
-| `/:lang` | Home — hero, figures, three lines of practice, last three roles, stack preview |
+| `/:lang` | Home — hero, figures, three lines of practice, last three roles, projects teaser, stack preview |
 | `/:lang/experience` | Full timeline, newest first |
 | `/:lang/experience/:id` | One role: CV bullets, context, spec panel, prev/next pager |
+| `/:lang/projects` | Self-directed projects, newest first, behind a disclosure block |
+| `/:lang/projects/:id` | One project: maturity statement, what it does, why, measured figures |
 | `/:lang/skills` | Full technology list grouped, plus the CV's secondary skills |
 | `/:lang/about` | Story, how he works, education, languages, interests |
 | `/:lang/contact` | Channels, details, FAQ |
@@ -112,9 +115,34 @@ render time:
 - **Technologies** — counted from `skills.yaml`.
 - **Durations and date ranges** — formatted from `YYYY-MM` in `lib/experience.js`,
   inclusive of both endpoints, and localised per language.
+- **Project figures** — commits, tests, source lines and modules per project are
+  measured from each repository and stored in `projects.yaml`; the totals on the
+  projects strip are summed from those entries in `lib/projects.js`, never typed.
 
 Change a date in the dictionary and the metrics strip, the timeline and
 `ai.json` all follow. The same applies to the per-group counts on the stack page.
+
+## The projects section
+
+`/:lang/projects` covers the self-directed work from 2026 — four codebases, none
+of them client work and none of them a shipped product. Three rules apply there
+and they are not optional:
+
+- **A disclosure block comes before the work.** It states that these are not
+  products, not client work, and that the source is private. Every claim further
+  down the page depends on it, so it is not something to shorten or move below
+  the fold.
+- **Each project leads with its own maturity statement.** `status` in
+  `projects.yaml` is rendered first on the detail page, in the project's own
+  words. A reader who stops after one paragraph should still leave with the
+  right impression of how finished the thing is.
+- **`figures` are measured, not estimated.** Commits come from the git history,
+  tests from test attributes and registrations in the source, lines from tracked
+  source files. Re-measure them when a project moves; do not round them up.
+
+`Sovereign` is the site's name for the repository called `counter-terrorist`.
+The page describes what it is — a host security orchestrator — rather than the
+mission framing in the repository's own README.
 
 ## What the content does and does not claim
 

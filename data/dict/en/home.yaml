@@ -42,6 +42,14 @@ recent:
   description: "Newest first. The full history, with what each role involved, is on the experience page."
   cta: "All eight roles"
 
+projects:
+  eyebrow: "SELF-DIRECTED — 2026"
+  title: "What the last two years went into."
+  description: "Four engineering projects, none of them client work and none of them a shipped product. The figures on each card are counted from the repository; what these are and are not is set out in full on the projects page."
+  figure_commits: "commits"
+  figure_tests: "tests"
+  cta: "All four projects"
+
 stack:
   eyebrow: "THE STACK"
   title: "What I work with."

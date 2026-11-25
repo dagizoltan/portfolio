@@ -159,6 +159,28 @@ export const buildSchema = (type, data = {}, domain = SITE.domain) => {
                 }
             };
 
+        /**
+         * One self-directed project. `SoftwareSourceCode` rather than
+         * `SoftwareApplication`: these are codebases, not released products,
+         * and the distinction is the same one the page copy makes.
+         *
+         * No `codeRepository` is emitted — the repositories are private, and
+         * pointing crawlers at a URL that resolves to nothing would be worse
+         * than saying nothing.
+         */
+        case 'SoftwareSourceCode':
+            return {
+                ...base,
+                "@id": `${pageUrl}#project`,
+                "name": data.name,
+                "description": data.description,
+                "url": pageUrl,
+                ...(data.language ? { "programmingLanguage": data.language } : {}),
+                ...(data.stack?.length ? { "keywords": data.stack.join(', ') } : {}),
+                "author": { "@id": `${domain}/#person` },
+                "inLanguage": lang
+            };
+
         case 'ItemList':
             return {
                 ...base,

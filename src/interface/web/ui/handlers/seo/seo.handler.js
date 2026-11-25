@@ -3,12 +3,14 @@ import { buildUrl } from "../../lib/routes.js";
 import { SITE } from "../../lib/seo/site.js";
 import { allRoles, engineeringMonths } from "../../lib/experience.js";
 import { allSkills } from "../../lib/metrics.js";
+import { allProjects, projectTotals } from "../../lib/projects.js";
 
 const { domain, languages } = SITE;
 
 const STATIC_ROUTES = [
     { route: "/", dict: "home", priority: "1.0" },
     { route: "/experience", dict: "experience", priority: "0.9" },
+    { route: "/projects", dict: "projects", priority: "0.9" },
     { route: "/skills", dict: "skills", priority: "0.8" },
     { route: "/about", dict: "about", priority: "0.7" },
     { route: "/contact", dict: "contact", priority: "0.7" },
@@ -92,6 +94,29 @@ const buildExperienceSitemap = async () => {
     return xml(urls);
 };
 
+const buildProjectsSitemap = async () => {
+    const urls = [];
+    for (const lang of languages) {
+        const dict = await readDict(lang, 'projects');
+        if (!dict?.projects) continue;
+
+        const modified = await lastMod(`data/dict/${lang}/projects.yaml`);
+        for (const project of dict.projects) {
+            if (!project.id) continue;
+            const route = `/projects/${project.id}`;
+            urls.push({
+                loc: `${domain}${buildUrl(lang, route)}`,
+                lastmod: modified,
+                changefreq: 'monthly',
+                // A project still being worked on ranks above a paused one.
+                priority: project.end ? '0.6' : '0.8',
+                alternates: alternates(route)
+            });
+        }
+    }
+    return xml(urls);
+};
+
 /**
  * Machine-readable career summary for crawlers and assistants. Mirrors the
  * English dictionaries so an agent can answer "what has this person worked on"
@@ -102,6 +127,7 @@ const buildAiContent = async () => {
     const experience = await readDict(lang, 'experience');
     const skills = await readDict(lang, 'skills');
     const about = await readDict(lang, 'about');
+    const projects = await readDict(lang, 'projects');
 
     return {
         name: SITE.name,
@@ -127,6 +153,30 @@ const buildAiContent = async () => {
             technologies_named_in_cv: role.stack || [],
             url: `${domain}${buildUrl(lang, `/experience/${role.id}`)}`
         })),
+        /**
+         * Self-directed projects, kept in a separate key from `roles` so an
+         * assistant reading this file cannot mistake them for employment.
+         * `figures` are measured from each repository; `status` is the
+         * project's own maturity statement, not a marketing line.
+         */
+        projects: allProjects(projects, lang, projects?.labels).map((project) => ({
+            id: project.id,
+            name: project.name,
+            kind: project.kind,
+            start: project.start,
+            end: project.end || null,
+            months: project.months,
+            active: project.active,
+            primary_language: project.language,
+            status: project.status,
+            summary: project.summary,
+            highlights: project.highlights || [],
+            technologies: project.stack || [],
+            figures: project.figures || {},
+            source: "private — access on request",
+            url: `${domain}${buildUrl(lang, `/projects/${project.id}`)}`
+        })),
+        project_totals: projectTotals(projects),
         skills: (skills?.groups || []).map((group) => ({
             group: group.name,
             items: (group.items || []).map((i) => (typeof i === 'string' ? i : i.name))
@@ -150,7 +200,7 @@ export const seoHandler = {
     sitemapIndex: (c) => c.body(...asXml(
         `<?xml version="1.0" encoding="UTF-8"?>\n` +
         `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-        ['pages', 'experience']
+        ['pages', 'experience', 'projects']
             .map((n) => `  <sitemap>\n    <loc>${domain}/sitemap-${n}.xml</loc>\n  </sitemap>`)
             .join('\n') +
         `\n</sitemapindex>`
@@ -158,5 +208,6 @@ export const seoHandler = {
 
     sitemapPages: async (c) => c.body(...asXml(await buildPagesSitemap())),
     sitemapExperience: async (c) => c.body(...asXml(await buildExperienceSitemap())),
+    sitemapProjects: async (c) => c.body(...asXml(await buildProjectsSitemap())),
     ai: async (c) => c.json(await buildAiContent())
 };
