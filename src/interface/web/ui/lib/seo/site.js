@@ -14,7 +14,7 @@ export const SITE = {
     description:
         "Zoltán Dági is a software developer based in Budapest, Hungary, with eight years across frontend engineering, Node.js and Deno services, and embedded systems.",
     email: "dagizoltan@gmail.com",
-    phone: "+36 70 587 8519",
+    phone: "+36 20 772 7312",
     city: "Budapest",
     country: "Hungary",
     logo: "/assets/og-default.svg",

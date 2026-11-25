@@ -58,7 +58,8 @@ never a component.
 ## Design system
 
 Everything is driven by tokens at the top of `global.css`. The palette is lifted
-pixel-for-pixel from `Dági Zoltán - CV.pdf`:
+pixel-for-pixel from the original CV design export (removed from the tree;
+it is in git history at `e37b55a`):
 
 | Token | Value | From the CV |
 |---|---|---|
@@ -136,9 +137,23 @@ and they are not optional:
   `projects.yaml` is rendered first on the detail page, in the project's own
   words. A reader who stops after one paragraph should still leave with the
   right impression of how finished the thing is.
-- **`figures` are measured, not estimated.** Commits come from the git history,
-  tests from test attributes and registrations in the source, lines from tracked
-  source files. Re-measure them when a project moves; do not round them up.
+- **`figures` are measured, not estimated.** Re-measure them when a project
+  moves; do not round them up. The commands, run inside each repository:
+
+  ```bash
+  git rev-list --count HEAD                                   # commits
+  git ls-files '*.rs' | xargs grep -hcE '^\s*#\[(tokio::)?test\]'  # Rust tests
+  git ls-files '*.ts' '*.tsx' | xargs grep -ohE 'Deno\.test\(' | wc -l
+  git ls-files '*.rs' '*.ts' '*.tsx' '*.js' \
+    | grep -ivE '(^|/)vendor/' | xargs wc -l | tail -1        # source lines
+  ```
+
+  **The `vendor/` exclusion is not optional.** nullherz tracks 69 third-party
+  Rust files; counting them put 21,155 lines of somebody else's code into a
+  figure presented as this site's own, which is exactly the claim the rest of
+  this page is careful not to make. `wc -l` also counts blank and comment
+  lines, so these are file lines, not SLOC — the page says "lines of source"
+  rather than "lines of code" for that reason.
 
 `Sovereign` is the site's name for the repository called `counter-terrorist`.
 The page describes what it is — a host security orchestrator — rather than the
@@ -161,6 +176,66 @@ they matter if you edit the copy:
   would be inventing one. Nothing is lost if a reader cannot separate the greens
   from the oranges — each group is named in the heading above its own list.
 
+## The two CVs
+
+Both are built by `scripts/build-cv.py` from the dictionaries under
+`data/dict/en/`, and they are the same CV:
+
+| | for | theme | size |
+|---|---|---|---|
+| `Zoltan-Dagi-CV.pdf` | humans | the site's palette and type | ~64 KB |
+| `Zoltan-Dagi-CV-ATS.pdf` | applicant tracking systems | black on white | ~8 KB |
+
+`build_content()` reads the YAML and returns sections, entries and bullets.
+Neither theme may add, drop or reword any of it — they only decide what it
+looks like. `--verify` proves that by extracting the text from both and
+comparing it word for word, ignoring case and punctuation, since the portfolio
+theme sets headings in caps and bullets with an em dash.
+
+**Add content in `build_content`, styling in a theme, never in both.**
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install reportlab pyyaml
+.venv/bin/python scripts/build-cv.py --verify
+```
+
+The designed build needs Roboto, Roboto Mono and Inter — the three faces the
+site loads. They are fetched once into `scripts/.fonts/` (gitignored) from the
+Google Fonts API, which serves TrueType only to a plain `Mozilla/5.0` user
+agent: a modern one gets woff2 and an old IE string gets EOT, and reportlab can
+embed neither. The `subset=latin,latin-ext` parameter is required rather than
+cosmetic — the plain `latin` subset has no ő or ű. Without a network the
+designed build falls back to system fonts and says so loudly.
+
+Both files carry a real text layer, so the designed one is parseable too. The
+plain one still exists because strict parsers do better without colour, rules
+and a dark ground.
+
+### Why the old export was replaced
+
+The original design export, `Dági Zoltán - CV.pdf`, has been deleted. It is
+still in git history at `e37b55a` if it is ever wanted back. It could not be
+parsed or edited. Its visible content is ~96,000
+vector path operators, and the Type 3 text layer beside it has glyph
+procedures containing only a `d1` metrics operator — they paint nothing. Strip
+every BT/ET block out of it and it renders identically. That is why
+`pdftotext` reduced its technology list to `HTM C A C WE PACK RO`, and why its
+phone number could not be corrected in place: the text and the picture are
+independent, so patching one desynchronises the document.
+
+### Layout rules that are load-bearing
+
+Both themes obey these. They are not stylistic preferences:
+
+- **Single column, dates inline.** A date right-aligned beside a title reads,
+  to a parser working in x-order, as interleaved nonsense.
+- **Skills as comma-separated prose**, not chips, tables or columns. This is
+  the block keyword matching actually reads.
+- **Standard headings** (`Experience`, `Education`, `Skills`). Parsers match
+  the literal words.
+- **Letter-spacing via the PDF `Tc` operator** (see `TrackedLine`), never by
+  padding strings with spaces — that would extract as `Z O L T Á N`.
+
 ## Before this goes live
 
 - [ ] **Set the domain.** `src/interface/web/ui/lib/seo/site.js` holds
@@ -173,9 +248,11 @@ they matter if you edit the copy:
 - [ ] **A GitHub link is the biggest single gap.** The CV lists Git, GitLab,
       GitHub and Bitbucket but links no public code. For a developer portfolio
       that is the first thing a technical reviewer looks for.
-- [ ] **The CV PDF is served from `/assets/zoltan-dagi-cv.pdf`** and is the file
-      from the repository root. Re-export it there when the CV changes — the
-      header, both hero buttons and the about page all point at that one path.
+- [ ] **The CV PDF is served from `/assets/zoltan-dagi-cv.pdf`**, which is a
+      copy of the generated `Zoltan-Dagi-CV.pdf`. It does not rebuild itself at
+      render time: after changing a dictionary, run `scripts/build-cv.py` and
+      copy the result over that asset. The header, both hero buttons and the
+      about page all point at that one path.
 - [ ] **The OG image is an SVG.** `assets/og-default.svg` renders correctly in
       most previews, but a few social platforms only accept raster. Export a
       1200×630 PNG and update `logo`/`defaultImage` in `site.js` if that matters.
