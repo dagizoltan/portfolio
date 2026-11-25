@@ -118,7 +118,7 @@ projects:
     figures:
       commits: 1731
       tests: 1098
-      lines: 141297
+      lines: 120142
       modules: 21
     stack:
       - "Rust"
@@ -150,7 +150,7 @@ projects:
     figures:
       commits: 1413
       tests: 1475
-      lines: 129660
+      lines: 129655
       modules: 16
     stack:
       - "Deno"

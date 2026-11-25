@@ -136,9 +136,23 @@ and they are not optional:
   `projects.yaml` is rendered first on the detail page, in the project's own
   words. A reader who stops after one paragraph should still leave with the
   right impression of how finished the thing is.
-- **`figures` are measured, not estimated.** Commits come from the git history,
-  tests from test attributes and registrations in the source, lines from tracked
-  source files. Re-measure them when a project moves; do not round them up.
+- **`figures` are measured, not estimated.** Re-measure them when a project
+  moves; do not round them up. The commands, run inside each repository:
+
+  ```bash
+  git rev-list --count HEAD                                   # commits
+  git ls-files '*.rs' | xargs grep -hcE '^\s*#\[(tokio::)?test\]'  # Rust tests
+  git ls-files '*.ts' '*.tsx' | xargs grep -ohE 'Deno\.test\(' | wc -l
+  git ls-files '*.rs' '*.ts' '*.tsx' '*.js' \
+    | grep -ivE '(^|/)vendor/' | xargs wc -l | tail -1        # source lines
+  ```
+
+  **The `vendor/` exclusion is not optional.** nullherz tracks 69 third-party
+  Rust files; counting them put 21,155 lines of somebody else's code into a
+  figure presented as this site's own, which is exactly the claim the rest of
+  this page is careful not to make. `wc -l` also counts blank and comment
+  lines, so these are file lines, not SLOC — the page says "lines of source"
+  rather than "lines of code" for that reason.
 
 `Sovereign` is the site's name for the repository called `counter-terrorist`.
 The page describes what it is — a host security orchestrator — rather than the
