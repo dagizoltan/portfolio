@@ -183,7 +183,7 @@ Both are built by `scripts/build-cv.py` from the dictionaries under
 
 | | for | theme | size |
 |---|---|---|---|
-| `Zoltan-Dagi-CV.pdf` | humans | the site's palette and type | ~64 KB |
+| `Zoltan-Dagi-CV.pdf` | humans | light, editorial, one green accent | ~65 KB |
 | `Zoltan-Dagi-CV-ATS.pdf` | applicant tracking systems | black on white | ~8 KB |
 
 `build_content()` reads the YAML and returns sections, entries and bullets.
@@ -193,6 +193,35 @@ comparing it word for word, ignoring case and punctuation, since the portfolio
 theme sets headings in caps and bullets with an em dash.
 
 **Add content in `build_content`, styling in a theme, never in both.**
+
+The designed CV is `PaperTheme`: ink on paper, the name large with air around
+it, one green accent — darkened to `#1F7A10`, because the site's `#3EB823`
+measures 2.6:1 on white and fails every contrast threshold — and a wide outer
+margin that caps the measure instead of a date rail. `NightTheme` is the same
+document on the site's navy, for anyone who wants that ground on the page;
+`--candidates DIR` writes it and nothing ships it. A light document reads as
+the more elegant of the two and prints without emptying a cartridge, which is
+why Paper is the one served.
+
+Three rules carried over from the first attempt, which was rejected for good
+reasons worth recording:
+
+- **One accent, not two.** Navy plus two greys plus green plus orange is five
+  colours on a document that needs three.
+- **A wide outer margin, not a rail.** The rail spent 28% of the text width on
+  one short date. Dropping it caps the measure just as hard and the space
+  reads as air rather than as an empty column.
+- **The header is a composition.** Name, title, rule, then the contact details
+  folded from four stacked mono lines into three. The contrast between an airy
+  header and a dense body is the design; the earlier version had the same grey
+  value from top to bottom.
+
+**On length.** A readable measure, generous air and two pages cannot all hold
+at 866 words. The designed CV runs to three at ~91 characters; squeezing it to
+two means compressing leading and type until the air is gone, which is what
+made the earlier version feel cramped. The lever is content, not layout — the
+projects section carries a lead sentence, two bullets and a technologies line
+per project, and one line each would land the whole thing on two pages.
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install reportlab pyyaml

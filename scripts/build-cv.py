@@ -59,6 +59,7 @@ import argparse
 import re
 import subprocess
 import sys
+import pathlib
 import urllib.request
 from pathlib import Path
 
@@ -70,8 +71,8 @@ from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
-    Flowable, KeepTogether, Paragraph, SimpleDocTemplate, Spacer, Table,
-    TableStyle,
+    Flowable, HRFlowable, KeepTogether, Paragraph, SimpleDocTemplate, Spacer,
+    Table, TableStyle,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -334,7 +335,13 @@ class Theme:
     name = "base"
     suffix = ""
     page_bg = None
-    margin = 18          # mm, left and right
+    margin = 18          # mm; margin_r defaults to the same
+    margin_r = None
+    keep_entries = True
+
+    @property
+    def right(self):
+        return self.margin if self.margin_r is None else self.margin_r
 
     def skills(self, pairs, st):
         return [self.pair(label, value, st) for label, value in pairs]
@@ -399,29 +406,35 @@ class PlainTheme(Theme):
         return Paragraph(f"- {esc(text)}", st["bullet"])
 
 
-class PortfolioTheme(Theme):
-    """The site's own palette and type. For humans.
+# --------------------------------------------------------------------------
+# the designed CV, and the alternative ground
+# --------------------------------------------------------------------------
 
-    Green names things, orange states them — the division the CV and the site
-    both use. Nothing is rounded, because `--radius: 0`.
+class ComposedTheme(Theme):
+    """Shared skeleton for the two candidates.
+
+    Three decisions separate these from the first portfolio theme:
+
+    * **One accent, not two.** Navy plus two greys plus green plus orange is
+      five colours on a document that needs three. Each candidate keeps one.
+    * **A wide outer margin instead of a date rail.** The rail spent 28% of
+      the text width on one short string. Dropping it and setting the right
+      margin wide caps the measure just as hard, and the space reads as air
+      rather than as an empty column.
+    * **A header that is a composition.** Name, title, rule, and the contact
+      details folded from four stacked mono lines into two. The contrast
+      between an airy header and a dense body is the design; the old one had
+      the same grey value top to bottom.
     """
-
-    name, suffix = "portfolio", ""
-    page_bg = HexColor(PALETTE["ground"])
-
-    # Wider margins and a 96pt date rail bring the text column down from ~95
-    # characters to ~80. Long measure is what made the old single column hard
-    # to read however clean the type was.
-    # The rail is sized by the longest date the dictionary can produce
-    # ("September 2021 - April 2022" at 7pt mono, ~113pt) plus its 10pt
-    # gutter. Narrower and the rail wraps, which turns the second vertical
-    # edge the page reads against into a ragged one.
-    margin = 20
-    rail = 132
 
     display_font = "Roboto-Light"
     body_font, bold_font = "Inter-Regular", "Inter-SemiBold"
     mono_font, mono_bold = "RobotoMono-Regular", "RobotoMono-Bold"
+
+    ink = muted = accent = rule_c = "#000000"
+    name_size = 38
+    name_track = 1.6
+    keep_entries = False
 
     def __init__(self, real_fonts=True):
         if not real_fonts:
@@ -430,113 +443,129 @@ class PortfolioTheme(Theme):
             self.mono_font = self.mono_bold = "Courier"
 
     def styles(self):
-        text, muted = HexColor(PALETTE["text"]), HexColor(PALETTE["muted"])
-        base = ParagraphStyle("base", fontName=self.body_font, fontSize=8.5,
-                              leading=11.0, textColor=text)
+        ink, muted = HexColor(self.ink), HexColor(self.muted)
+        base = ParagraphStyle("base", fontName=self.body_font, fontSize=8.7,
+                              leading=11.1, textColor=ink)
         return {
             "contact": ParagraphStyle("contact", parent=base,
                                       fontName=self.mono_font, fontSize=7.4,
-                                      leading=11, textColor=muted),
+                                      leading=11.4, textColor=muted),
             "body": base,
-            "intro": ParagraphStyle("intro", parent=base, fontSize=7.8,
-                                    leading=10, textColor=muted, spaceAfter=1),
+            "intro": ParagraphStyle("intro", parent=base, fontSize=8,
+                                    leading=10.8, textColor=muted, spaceAfter=2),
             "entry": ParagraphStyle("entry", parent=base, fontName=self.bold_font,
-                                    fontSize=9.9, leading=11.8, spaceBefore=0),
+                                    fontSize=9.5, leading=11.6, spaceBefore=5,
+                                    keepWithNext=1),
             "meta": ParagraphStyle("meta", parent=base, fontName=self.mono_font,
-                                   fontSize=7, leading=10.2,
-                                   textColor=HexColor(PALETTE["signal"]),
-                                   spaceAfter=1),
-            "bullet": ParagraphStyle("bullet", parent=base, leftIndent=10,
-                                     firstLineIndent=-10, spaceAfter=0.4),
-            # The date rail. Mono, orange, sitting on the title's baseline.
-            "rail": ParagraphStyle("rail", parent=base,
-                                   fontName=self.mono_font, fontSize=7,
-                                   leading=10.5,
-                                   textColor=HexColor(PALETTE["signal"]),
-                                   spaceBefore=3),
-            # One skill group: orange label over its comma list.
-            "skill": ParagraphStyle("skill", parent=base, fontSize=8.1,
+                                   fontSize=7.2, leading=10.6,
+                                   textColor=HexColor(self.accent), spaceAfter=3,
+                                   keepWithNext=1),
+            "bullet": ParagraphStyle("bullet", parent=base, leftIndent=11,
+                                     firstLineIndent=-11, spaceAfter=0.4),
+            "skill": ParagraphStyle("skill", parent=base, fontSize=8.2,
                                     leading=10.4, spaceAfter=0),
         }
 
     def header(self, content, st):
-        accent = HexColor(PALETTE["accent"])
+        lines = content["contact_lines"]
+        # Email, phone, city and working style belong on one line — they are
+        # what someone needs to act. The languages and the licence stay on
+        # their own; folded in they overrun the measure and break mid-phrase.
+        folded = ["   ·   ".join(lines[:2])] + list(lines[2:])
         return [
-            TrackedLine(content["name"].upper(), self.display_font, 26,
-                        accent, 2.4, 30),
-            TrackedLine(content["title"].upper(), self.display_font, 12,
-                        HexColor(PALETTE["signal"]), 2.8, 17),
-            Spacer(1, 5),
-        ] + [Paragraph(esc(l), st["contact"]) for l in content["contact_lines"]]
+            TrackedLine(content["name"].upper(), self.display_font,
+                        self.name_size, HexColor(self.ink), self.name_track,
+                        self.name_size * 1.16),
+            TrackedLine(content["title"].upper(), self.display_font, 11.5,
+                        HexColor(self.accent), 3.0, 16),
+            Spacer(1, 10),
+            HRFlowable(width="100%", thickness=0.6,
+                       color=HexColor(self.rule_c), spaceAfter=9),
+        ] + [Paragraph(esc(l), st["contact"]) for l in folded if l.strip()]
 
     def heading(self, text, st):
-        return [Spacer(1, 5),
-                TrackedLine(text.upper(), self.display_font, 11.2,
-                            HexColor(PALETTE["accent"]), 2.4, 13,
-                            rule=HexColor(PALETTE["rule"]), rule_gap=3),
-                Spacer(1, 1)]
+        return [Spacer(1, 9),
+                TrackedLine(text.upper(), self.mono_bold, 7.4,
+                            HexColor(self.accent), 2.4, 11,
+                            rule=HexColor(self.rule_c), rule_gap=4),
+                Spacer(1, 3)]
 
     def pair(self, label, value, st):
-        sig = PALETTE["signal"]
         return Paragraph(
-            f'<font face="{self.mono_bold}" size="7" color="{sig}">'
+            f'<font face="{self.mono_bold}" size="7" color="{self.muted}">'
             f'{esc(label.upper())}</font><br/>{esc(value)}', st["skill"])
 
-    def bullet(self, text, st):
-        # Muted, not green: the dash should mark the line without competing
-        # with the headings. The hairline colour was tried first and is all
-        # but invisible on the ground.
-        return Paragraph(f'<font color="{PALETTE["muted"]}">—</font> {esc(text)}',
-                         st["bullet"])
-
     def skills(self, pairs, st):
-        """Two columns. Ten full-width rows of identical weight was a wall;
-        a reader's eye slid off it without landing anywhere."""
         rows, half = [], (len(pairs) + 1) // 2
         left, right = pairs[:half], pairs[half:]
         for i in range(half):
             a = self.pair(*left[i], st) if i < len(left) else ""
             b = self.pair(*right[i], st) if i < len(right) else ""
             rows.append([a, b])
-        width = (A4[0] - 2 * self.margin * mm - 14) / 2
-        tbl = Table(rows, colWidths=[width, width], hAlign="LEFT")
+        w = (A4[0] - (self.margin + self.right) * mm - 16) / 2
+        tbl = Table(rows, colWidths=[w, w], hAlign="LEFT")
         tbl.setStyle(TableStyle([
             ("VALIGN", (0, 0), (-1, -1), "TOP"),
             ("LEFTPADDING", (0, 0), (0, -1), 0),
-            ("LEFTPADDING", (1, 0), (1, -1), 14),
+            ("LEFTPADDING", (1, 0), (1, -1), 16),
             ("RIGHTPADDING", (0, 0), (-1, -1), 0),
             ("TOPPADDING", (0, 0), (-1, -1), 1),
             ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
         ]))
         return [tbl]
 
+    def bullet(self, text, st):
+        return Paragraph(f'<font color="{self.muted}">·</font>  {esc(text)}',
+                         st["bullet"])
+
     def entry(self, entry, st):
-        """Date in a left rail, everything else in the text column.
-
-        The rail is what caps the measure and gives the page a second
-        vertical edge to read against. Cells are drawn left then right, so
-        extraction still reads date-then-role rather than interleaving.
-        """
-        right = [Paragraph(esc(entry["title"]), st["entry"])]
-        if entry.get("where"):
-            right.append(Paragraph(esc(entry["where"]), st["meta"]))
+        block = [Paragraph(esc(entry["title"]), st["entry"])]
+        meta = "   ·   ".join(x for x in (entry.get("when"), entry.get("where")) if x)
+        if meta:
+            block.append(Paragraph(esc(meta), st["meta"]))
         if entry.get("lead"):
-            right.append(Paragraph(esc(entry["lead"]), st["bullet"]))
-        right += [self.bullet(b, st) for b in entry["bullets"]]
+            block.append(Paragraph(esc(entry["lead"]), st["bullet"]))
+        return block + [self.bullet(b, st) for b in entry["bullets"]]
 
-        rail = Paragraph(esc(entry.get("when", "")), st["rail"])
-        content_w = A4[0] - 2 * self.margin * mm - self.rail
-        tbl = Table([[rail, right]], colWidths=[self.rail, content_w],
-                    hAlign="LEFT")
-        tbl.setStyle(TableStyle([
-            ("VALIGN", (0, 0), (-1, -1), "TOP"),
-            ("LEFTPADDING", (0, 0), (-1, -1), 0),
-            ("RIGHTPADDING", (0, 0), (0, -1), 10),
-            ("RIGHTPADDING", (1, 0), (1, -1), 0),
-            ("TOPPADDING", (0, 0), (-1, -1), 4),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
-        ]))
-        return [tbl]
+
+class PaperTheme(ComposedTheme):
+    """The designed CV. Light, editorial: ink on paper, one green accent, a
+    wide outer margin.
+
+    The green is darkened from the site's #3EB823, which measures 2.6:1 on
+    white and fails every contrast threshold. #1F7A10 is 5.3:1.
+    """
+
+    name, suffix = "paper", ""
+    page_bg = HexColor("#FCFCFA")
+    ink, muted, accent, rule_c = "#14181C", "#6E7781", "#1F7A10", "#D6D8D4"
+    margin, margin_r = 24, 56
+    name_size, name_track = 40, 1.8
+
+
+class NightTheme(ComposedTheme):
+    """The same document on the site's navy, for anyone who wants the
+    portfolio's ground carried onto the page. One orange accent; green is
+    spent only on the name, which is the thing it should name.
+
+    Not built by default — `--candidates DIR` writes it. A light document
+    reads as the more elegant of the two and prints without emptying a
+    cartridge, which is why Paper ships.
+    """
+
+    name, suffix = "night", "-night"
+    page_bg = HexColor(PALETTE["ground"])
+    ink, muted, accent, rule_c = PALETTE["text"], PALETTE["muted"], PALETTE["signal"], PALETTE["rule"]
+    margin, margin_r = 22, 54
+    name_size, name_track = 42, 2.0
+
+    def header(self, content, st):
+        flowables = super().header(content, st)
+        # Only the name takes the green.
+        flowables[0] = TrackedLine(content["name"].upper(), self.display_font,
+                                   self.name_size, HexColor(PALETTE["accent"]),
+                                   self.name_track, self.name_size * 1.16)
+        return flowables
 
 
 # --------------------------------------------------------------------------
@@ -556,11 +585,18 @@ def render(content, theme, out_path):
         if section.get("pairs"):
             story += theme.skills(section["pairs"], st)
         for entry in section.get("entries", []):
-            story.append(KeepTogether(theme.entry(entry, st)))
+            block = theme.entry(entry, st)
+            # Wrapping a whole entry in KeepTogether pushes it to the next
+            # page the moment its last bullet will not fit, which leaves a
+            # hole at the foot of the page before it. Themes that set
+            # `keep_entries = False` rely on keepWithNext on the title and
+            # meta styles instead: the heading never orphans, the bullets
+            # flow.
+            story += [KeepTogether(block)] if theme.keep_entries else block
 
     doc = SimpleDocTemplate(
         str(out_path), pagesize=A4,
-        leftMargin=theme.margin * mm, rightMargin=theme.margin * mm,
+        leftMargin=theme.margin * mm, rightMargin=theme.right * mm,
         topMargin=15 * mm, bottomMargin=15 * mm,
         title=f"{content['name']} - {content['title']}",
         author=content["name"], subject="Curriculum Vitae",
@@ -587,6 +623,8 @@ def extract(path):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--lang", default="en")
+    ap.add_argument("--candidates", metavar="DIR",
+                    help="also build the alternative (navy) theme into DIR")
     ap.add_argument("--verify", action="store_true",
                     help="extract text from both and confirm they match")
     args = ap.parse_args()
@@ -599,11 +637,18 @@ def main():
 
     content = build_content(args.lang)
     built = []
-    for theme in (PlainTheme(), PortfolioTheme(real_fonts=real)):
+    for theme in (PlainTheme(), PaperTheme(real_fonts=real)):
         out = ROOT / f"Zoltan-Dagi-CV{theme.suffix}.pdf"
         render(content, theme, out)
         built.append(out)
         print(f"  wrote {out.name} ({out.stat().st_size / 1024:.0f} KB)")
+
+    if args.candidates:
+        d = pathlib.Path(args.candidates); d.mkdir(parents=True, exist_ok=True)
+        for theme in (NightTheme(real_fonts=real),):
+            out = d / f"Zoltan-Dagi-CV{theme.suffix}.pdf"
+            render(content, theme, out)
+            print(f"  candidate {out.name} ({out.stat().st_size / 1024:.0f} KB)")
 
     if args.verify:
         a, b = (extract(p) for p in built)
