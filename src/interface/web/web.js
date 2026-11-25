@@ -5,6 +5,8 @@ import { serveStatic } from "hono/deno"
 import { homeHandler } from "./ui/handlers/home/home.handler.js"
 import { experienceHandler } from "./ui/handlers/experience/experience.handler.js"
 import { experienceDetailHandler } from "./ui/handlers/experience-detail/experience-detail.handler.js"
+import { projectsHandler } from "./ui/handlers/projects/projects.handler.js"
+import { projectDetailHandler } from "./ui/handlers/project-detail/project-detail.handler.js"
 import { skillsHandler } from "./ui/handlers/skills/skills.handler.js"
 import { aboutHandler } from "./ui/handlers/about/about.handler.js"
 import { contactHandler } from "./ui/handlers/contact/contact.handler.js"
@@ -99,6 +101,7 @@ web.get('/robots.txt', seoHandler.robots)
 web.get('/sitemap.xml', seoHandler.sitemapIndex)
 web.get('/sitemap-pages.xml', seoHandler.sitemapPages)
 web.get('/sitemap-experience.xml', seoHandler.sitemapExperience)
+web.get('/sitemap-projects.xml', seoHandler.sitemapProjects)
 web.get('/ai.json', seoHandler.ai)
 
 // Static assets
@@ -110,6 +113,8 @@ web.get('/sx/global.css', serveCss('src/interface/web/ui/styles/global.css'))
 web.get('/sx/home.css', serveCss(`${H}/home/home.css`))
 web.get('/sx/experience.css', serveCss(`${H}/experience/experience.css`))
 web.get('/sx/experience-detail.css', serveCss(`${H}/experience-detail/experience-detail.css`))
+web.get('/sx/projects.css', serveCss(`${H}/projects/projects.css`))
+web.get('/sx/project-detail.css', serveCss(`${H}/project-detail/project-detail.css`))
 web.get('/sx/skills.css', serveCss(`${H}/skills/skills.css`))
 web.get('/sx/about.css', serveCss(`${H}/about/about.css`))
 web.get('/sx/contact.css', serveCss(`${H}/contact/contact.css`))
@@ -123,6 +128,9 @@ web.get('/:lang', homeHandler.get)
 
 web.get('/:lang/experience', experienceHandler.get)
 web.get('/:lang/experience/:id', experienceDetailHandler.get)
+
+web.get('/:lang/projects', projectsHandler.get)
+web.get('/:lang/projects/:id', projectDetailHandler.get)
 
 web.get('/:lang/skills', skillsHandler.get)
 web.get('/:lang/about', aboutHandler.get)

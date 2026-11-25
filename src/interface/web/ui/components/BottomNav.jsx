@@ -28,6 +28,13 @@ const Icons = {
             <path d="M3 13h18" />
         </svg>
     ),
+    '/projects': () => (
+        // Chip — the self-directed systems work, hardware roots included
+        <svg {...stroke}>
+            <path d="M7 7h10v10H7z" />
+            <path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3" />
+        </svg>
+    ),
     '/skills': () => (
         // Stacked layers — the technology groups
         <svg {...stroke}>

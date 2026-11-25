@@ -1,0 +1,205 @@
+head:
+  title: "Projects | Zoltán Dági — Software Developer"
+  description: "Four self-directed engineering projects built since 2026: a UAV flight control orchestrator, a real-time audio engine, a host security orchestrator and a multi-agent orchestration engine. Rust, Deno, TypeScript and eBPF."
+  keywords: "Rust developer portfolio, real-time systems, embedded Rust, eBPF, Deno developer, multi-agent orchestration, UAV flight control, audio DSP, open source projects Budapest"
+
+hero:
+  eyebrow: "SELF-DIRECTED WORK — 2026"
+  title: "Four systems, built to find the limits."
+  short_description: "What the last two years went into: four engineering projects, none of them client work, all of them larger than a weekend."
+  description: "After the end of 2024 I stopped taking roles and spent the time learning — first AI agents and how to work with them, then the systems below.<br/><br/>These are not products and none of them shipped to a customer. They are the places I went to find out what I did not know: real-time guarantees, kernel-level networking, safety-critical control loops, and orchestration across processes that can each fail on their own.<br/><br/><strong>The source is private. I will walk through any of it on a call, or grant access to a specific repository on request.</strong>"
+  cta_primary: "Talk about the work"
+  cta_primary_href: "/contact"
+  cta_secondary: "Download CV (PDF)"
+  cta_secondary_href: "/assets/zoltan-dagi-cv.pdf"
+  cta_secondary_download: true
+
+metrics_labels:
+  projects: "Projects"
+  commits: "Commits"
+  tests: "Tests"
+  lines: "Lines of source"
+
+labels:
+  present: "Active"
+  detail: "Project detail"
+  back: "All projects"
+  period: "Period"
+  duration: "Duration"
+  language: "Primary language"
+  status: "Status"
+  spec: "Project spec"
+  what_it_does: "WHAT IT DOES"
+  context: "Why I built it"
+  figures: "Figures"
+  commits: "Commits"
+  tests: "Tests"
+  lines: "Lines of source"
+  modules: "Modules"
+  stack: "Stack"
+  pager: "Other projects"
+  older: "Earlier project"
+  newer: "Later project"
+  view_all: "All four projects"
+  source: "Source"
+  source_private: "Private — access on request"
+  counted_note: "Commit, test and line counts are read from the repository, not estimated."
+
+# ---------------------------------------------------------------------------
+# Self-directed projects, 2026. Each entry's `figures` are measured from the
+# repository itself: `commits` from the git history, `tests` from test
+# attributes and registrations in the source, `lines` from tracked source
+# files. They are counted, not estimated, and they describe volume — not
+# quality, and not readiness.
+#
+# `status` is deliberately the first thing a reader meets on a detail page.
+# None of these is a shipped product and the page must not imply otherwise.
+# ---------------------------------------------------------------------------
+disclosure:
+  eyebrow: "READ THIS FIRST"
+  title: "What these are, and what they are not."
+  body: |
+    **They are not products.** Nothing here shipped to a customer, carries a support commitment, or has been through an external audit. Each project states its own maturity at the top of its page, in its own words rather than in marketing ones.
+
+    **They are not client work.** No employer, no brief, no deadline set by anyone else. That is the point of them — the constraints were chosen to be hard rather than to be commercial.
+
+    **The figures are measured.** Commits, tests and source lines are counted from each repository. They describe how much there is, which is a weaker claim than it looks: volume is not quality. They are here because the question this page answers is what two years went into, and that question is partly quantitative.
+
+    **The source is private.** I am happy to walk through any of it on a call, or to grant access to a specific repository if you would rather read it yourself.
+
+projects:
+  - id: uavctrl
+    name: "uavctrl"
+    kind: "Flight control"
+    tagline: "Safety-critical flight control at 166 m/s."
+    start: "2026-08"
+    end: "2026-10"
+    language: "Rust"
+    status: "Flies a validated mission end to end against a built-in vehicle model. It has not flown an aircraft."
+    summary: "A modular UAV control orchestrator for a high-subsonic fixed-wing airframe, with MAVLink interop, a reachability-aware safety kernel and a perception pipeline."
+    highlights:
+      - "Reachability-aware safety kernel that gates commands against the flight envelope"
+      - "Black box recorder whose replay verifier re-executes a recorded flight bit-exactly"
+      - "MAVLink 2 inbound command authentication with signing, and failover between links"
+      - "Perception daemon split into its own process, feeding the flight core"
+      - "Foundation and safety kernel cross-built for a bare-metal target"
+    figures:
+      commits: 560
+      tests: 1046
+      lines: 84390
+      modules: 21
+    stack:
+      - "Rust"
+      - "MAVLink 2"
+      - "no_std"
+      - "Tokio"
+      - "YOLO"
+    context: |
+      The design is downstream of one number. A high-subsonic fixed-wing airframe at 600 km/h is moving at 166.7 m/s: 0.17 m every millisecond, 16.7 m in the time a typical web request takes to resolve, and a turn radius of 731 m at 4 g.
+
+      That makes almost every interesting question a deadline question. How late can a command arrive and still be safe to act on? What does the safety kernel do when it cannot prove the aircraft can recover? A controller that is *usually* fast is not a controller at all at that speed, which is why the safety layer reasons about reachability rather than about setpoints.
+
+      The honest state of it is in the repository's own audit document: several subsystems merged as features — a swarm mesh, 4D deconfliction, terrain ray-casting — compile and are called by nothing. The hardware-in-the-loop bench was deleted rather than fixed. Writing that down was more useful than quietly leaving it out.
+
+  - id: nullherz
+    name: "nullherz"
+    kind: "Real-time audio"
+    tagline: "Real-time audio with a zero-allocation hot path."
+    start: "2026-05"
+    language: "Rust"
+    status: "In active development. The audio core and its real-time guarantees are the finished part; the suite around them is not."
+    summary: "A studio software suite built on a real-time Rust audio core, with a hard zero-allocation guarantee on the processing path."
+    highlights:
+      - "Triple-plane isolation — orchestration, protocol and execution — enforced as an architectural invariant"
+      - "Lock-free SPSC and MPSC ring buffers as the only channel between planes"
+      - "No allocation, no locks and no I/O inside the audio callback"
+      - "Graph topology compiled with Kahn's algorithm off the audio thread"
+      - "Sidecar SDK and a proc-macro layer for third-party processors"
+    figures:
+      commits: 1731
+      tests: 1098
+      lines: 141297
+      modules: 21
+    stack:
+      - "Rust"
+      - "Lock-free concurrency"
+      - "DSP"
+      - "Proc macros"
+      - "Real-time audio"
+    context: |
+      Real-time audio is a deadline system with an unusually unforgiving failure mode: miss the buffer and the listener hears it immediately. There is no retry, no graceful degradation, no loading state.
+
+      That turns ordinary conveniences into defects. A heap allocation inside the processing callback is a bug even when it never fails, because the allocator's worst case is unbounded. So is a mutex, a log line, a file read. The codebase is organised around keeping those out of one specific code path, and the architectural rules that enforce it are written down as invariants rather than left as folklore.
+
+      The lesson that cost the most was not in the audio thread at all. The conductor's command path feeds the real-time ring, so it is latency-critical too — an inline file decode in one command handler once froze every queued command, Play included, for seconds. Decoding moved to a background thread and the handler re-drives on completion.
+
+  - id: sovereign
+    name: "Sovereign"
+    kind: "Host security"
+    tagline: "Kernel-level enforcement under a Deno control plane."
+    start: "2026-04"
+    language: "TypeScript, Rust"
+    status: "Development stage. Linux x86_64 only, not a supported product, and no production deployment."
+    summary: "A host security orchestrator: a Deno control plane driving Rust sidecar agents and eBPF components in the kernel path."
+    highlights:
+      - "eBPF firewall and gateway operating in the kernel network path"
+      - "Twelve Rust sidecars — firewall, decoy, analyzer, enforcer, netcap, proxy, VPN, trust root, file watcher"
+      - "Signed sidecar integrity manifest, generated SBOM, CSPRNG secrets created on first run"
+      - "TLS dashboard and token-authenticated API, with no credentials printed at startup"
+      - "Four control-plane applications: orchestrator, dispatcher, intel hub, fleet control"
+    figures:
+      commits: 1413
+      tests: 1475
+      lines: 129660
+      modules: 16
+    stack:
+      - "Deno"
+      - "TypeScript"
+      - "Rust"
+      - "eBPF"
+      - "WireGuard"
+    context: |
+      The interesting constraint in host security is that the control plane and the thing it controls have different trust properties. A dashboard written in TypeScript is a comfortable place to express policy and a poor place to enforce it; an eBPF program in the kernel path is the reverse.
+
+      So the system is split along that line. Policy, state and operator interface live in a Deno control plane. Enforcement lives in small Rust sidecars and in eBPF, each with a narrow job and a signed integrity manifest so the control plane can tell whether it is talking to the binary it expects.
+
+      The security scaffolding around it — SBOM generation, secrets created by CSPRNG on first run, a startup path that prints no credentials — is there because a security tool that is careless about its own supply chain is an argument against itself. TPM-backed attestation, production signing and hardware validation are open, and the repository says so rather than implying otherwise.
+
+  - id: codepipe
+    name: "codepipe"
+    kind: "Agent orchestration"
+    tagline: "Event-sourced orchestration for teams of AI agents."
+    start: "2026-03"
+    language: "TypeScript"
+    status: "In active development. The engine and its MCP servers run; it is a working system, not a released one."
+    summary: "An event-sourced orchestration engine that runs a team of AI agents through an intake, design, build and merge lifecycle."
+    highlights:
+      - "Event-sourced workflow engine on Deno KV — every state transition is recorded and replayable"
+      - "Transactional outbox for reliable event delivery across distributed agents"
+      - "Multi-agent consensus: high-criticality changes go through a debate protocol before merge"
+      - "Parallel implementation hypotheses, adjudicated by a judge agent"
+      - "Eight MCP tool servers decoupling agent reasoning from system access"
+    figures:
+      commits: 482
+      tests: 174
+      lines: 26581
+      modules: 13
+    stack:
+      - "Deno"
+      - "TypeScript"
+      - "Deno KV"
+      - "MCP"
+      - "Event sourcing"
+    context: |
+      Agents fail in ways ordinary services do not. They fail partially, they fail plausibly, and they fail in a manner that looks like success until something downstream reads the output carefully. That makes the usual request/response shape a bad fit: by the time you know a step went wrong, the state it produced is already three steps upstream of the problem.
+
+      Event sourcing was the answer to that. Every transition from intake to design to build to merge is recorded as a discrete event, so a run can be replayed, inspected at any point, and resumed rather than restarted. A transactional outbox keeps delivery reliable when an agent process dies mid-step.
+
+      The part that interested me most was deciding what to do when agents disagree. High-criticality changes go through a debate protocol where several models must converge, and for genuinely hard tasks the engine spawns parallel implementation attempts and has a judge agent choose between them. Both are expensive, which is itself a design constraint — the cost model is part of the architecture rather than an afterthought.
+
+bottom_cta:
+  eyebrow: "OPEN TO WORK"
+  title: "Want to read any of it?"
+  description: "Ask for access to a specific repository, or send a job description and I'll tell you which of these is relevant to it."
+  copy_label: "Copy address"
+  copied_label: "Copied"

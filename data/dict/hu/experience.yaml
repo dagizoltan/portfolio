@@ -4,10 +4,10 @@ head:
   keywords: "szoftverfejlesztő tapasztalat, frontend fejlesztő Budapest, Next.js fejlesztő, Node.js fejlesztő, AWS CloudFormation, IoT fejlesztő, beágyazott rendszerek Magyarország"
 
 hero:
-  eyebrow: "MUNKAHELYEK — 2015-TŐL 2024-IG"
+  eyebrow: "MUNKAVISZONYOK — 2015-TŐL 2024-IG"
   title: "Nyolc pozíció, egy irány."
   short_description: "Minden pozíció az önéletrajzomból származik; az időtartamokat az oldal a dátumokból számolja."
-  description: "Az út a Samsung és a Vodafone szervizeinek javításkövető szoftverétől egy kockázati tőkéből épült orvostechnikai IoT-eszközön át az Align Technology pácienseknek szóló felületéig vezet.<br/><br/>Ebből két pozíció fejlesztésvezetői szerep volt, egy — a berlini Bertelsmann-nál töltött év — pedig egyáltalán nem fejlesztés. Mindkettő szerepel a listán, mert az önéletrajz pontosan akkor szűnik meg hasznos lenni, amikor kimarad belőle, ami nem illik a képbe."
+  description: "Az út a Samsung és a Vodafone szervizeinek javításkövető szoftverétől egy kockázati tőkéből épült orvostechnikai IoT-eszközön át az Align Technology pácienseknek szóló felületéig vezet.<br/><br/>Ebből két pozíció fejlesztésvezetői szerep volt, egy — a berlini Bertelsmann-nál töltött év — pedig egyáltalán nem fejlesztés. Mindkettő szerepel a listán, mert az önéletrajz pontosan akkor szűnik meg hasznos lenni, amikor kimarad belőle, ami nem illik a képbe.<br/><br/><strong>Ez az oldal a munkaviszonyokról szól. A 2024 vége óta végzett munka saját projektekben folyt — négy mérnöki projekt, a projektek oldalon.</strong>"
   cta_primary: "Önéletrajz letöltése (PDF)"
   cta_primary_href: "/assets/zoltan-dagi-cv.pdf"
   cta_primary_download: true

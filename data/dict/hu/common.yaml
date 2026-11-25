@@ -10,6 +10,8 @@ navigation:
     href: "/"
   - label: "Tapasztalat"
     href: "/experience"
+  - label: "Projektek"
+    href: "/projects"
   - label: "Technológiák"
     href: "/skills"
   - label: "Rólam"

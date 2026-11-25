@@ -1,0 +1,237 @@
+/* ---------------------------------------------------------------
+   Projects index
+
+   Cards sit on the ground and are separated by hairline borders — there is
+   deliberately no lighter surface token (see the palette note in global.css),
+   so a card is drawn by its rules, not by a fill.
+   --------------------------------------------------------------- */
+
+.disclosure-body {
+    max-width: var(--text-max-width);
+    margin-top: var(--gap-lg);
+}
+
+.disclosure-body p { margin-bottom: 1.25rem; }
+.disclosure-body p:last-child { margin-bottom: 0; }
+
+.project-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.project-card {
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-md);
+}
+
+/* --- head: index, name, period ------------------------------------------ */
+
+.project-card-head {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.25rem 1rem;
+    align-items: start;
+    margin-bottom: 1.25rem;
+}
+
+@media (min-width: 820px) {
+    .project-card-head {
+        grid-template-columns: 2.5rem minmax(0, 1fr) 14rem;
+        gap: 2rem;
+    }
+}
+
+.project-index {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+    padding-top: 0.45rem;
+}
+
+.project-identity { min-width: 0; }
+
+.project-name {
+    font-size: 1.5rem;
+    margin: 0 0 0.15rem;
+    line-height: 1.1;
+    color: var(--color-foreground);
+}
+
+.project-name a:hover { color: var(--color-accent); }
+
+.project-kind {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-signal);
+    margin: 0;
+}
+
+.project-period {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+}
+
+@media (min-width: 820px) {
+    .project-period {
+        grid-column: 3;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        gap: 0.2rem;
+    }
+}
+
+.project-range {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-signal);
+}
+
+.project-duration {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+}
+
+/* --- body --------------------------------------------------------------- */
+
+.project-summary {
+    font-size: var(--text-fluid-p);
+    line-height: 1.75;
+    color: var(--color-foreground);
+    max-width: 68ch;
+    margin: 0 0 1.25rem;
+}
+
+@media (min-width: 820px) {
+    .project-summary,
+    .project-status,
+    .project-highlights,
+    .project-figures { margin-left: 3.5rem; }
+}
+
+/* The maturity statement. Orange label, because it is a fact about the
+   project rather than a heading — the same division the CV uses. */
+.project-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    border-left: 1px solid var(--color-signal-line);
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin: 0 0 1.5rem;
+    max-width: 68ch;
+}
+
+.project-status-label {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-signal);
+}
+
+.project-status-text {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+}
+
+.project-highlights {
+    list-style: none;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    max-width: 62ch;
+}
+
+.project-highlights li {
+    position: relative;
+    padding-left: 1.25rem;
+    padding-block: 0.3rem;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+}
+
+.project-highlights li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.05rem;
+    width: 7px;
+    height: 1px;
+    background: var(--color-accent);
+}
+
+/* --- measured figures ---------------------------------------------------- */
+
+.project-figures {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin: 0 0 1.5rem;
+    max-width: 34rem;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+}
+
+@media (min-width: 560px) {
+    .project-figures { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.project-figure {
+    background: var(--color-background);
+    padding: 0.75rem 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.project-figure dt {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-text-muted);
+}
+
+.project-figure dd {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    margin: 0;
+}
+
+.project-card .timeline-stack { margin-bottom: 1.25rem; }
+
+@media (min-width: 820px) {
+    .project-card .timeline-stack,
+    .project-more { margin-left: 3.5rem; }
+}
+
+.project-more { display: inline-block; }
+
+.projects-note {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    margin-top: var(--space-md);
+    max-width: 60ch;
+}

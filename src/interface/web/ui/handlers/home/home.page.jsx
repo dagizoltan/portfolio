@@ -7,9 +7,9 @@ import { paragraphs } from "../../lib/rich-text.js"
 
 export const HomePage = ({ dict }) => {
     const {
-        hero, practice, recent, stack, common, lang, metrics,
-        currentPath, seoData, schemas, featuredRoles = [], stackGroups = [],
-        experienceLabels = {}
+        hero, practice, recent, projects, stack, common, lang, metrics,
+        currentPath, seoData, schemas, featuredRoles = [], featuredProjects = [],
+        stackGroups = [], experienceLabels = {}
     } = dict;
 
     return (
@@ -106,8 +106,50 @@ export const HomePage = ({ dict }) => {
                             </div>
                         </section>
 
+                        {/* Self-directed work — the years the CV does not
+                            cover. Placed after the roles so it reads as what
+                            came next, not as a substitute for employment. */}
+                        {projects && featuredProjects.length > 0 && (
+                            <section className="home-projects-section section-padding">
+                                <div className="container">
+                                    <span className="label">{projects.eyebrow}</span>
+                                    <h2 className="section-title">{projects.title}</h2>
+                                    <p className="section-description">{projects.description}</p>
+
+                                    <ul className="home-project-grid">
+                                        {featuredProjects.map((project) => (
+                                            <li key={project.id} className="home-project-card">
+                                                <a href={project.href} className="home-project-link">
+                                                    <span className="home-project-top">
+                                                        <span className="home-project-name">{project.name}</span>
+                                                        <span className="home-project-range">{project.range}</span>
+                                                    </span>
+                                                    <span className="home-project-kind">{project.kind}</span>
+                                                    <span className="home-project-tagline">{project.tagline}</span>
+                                                    <span className="home-project-figures">
+                                                        <span className="home-project-figure">
+                                                            {project.commits} {projects.figure_commits}
+                                                        </span>
+                                                        <span className="home-project-figure">
+                                                            {project.tests} {projects.figure_tests}
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <div className="recent-action">
+                                        <a href={buildUrl(lang, '/projects')} className="btn btn-primary">
+                                            {projects.cta} &rarr;
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
+                        )}
+
                         {/* Stack preview — counts come from skills.yaml, not from copy */}
-                        <section className="stack-section section-padding">
+                        <section className="stack-section section-padding bg-band">
                             <div className="container">
                                 <span className="label">{stack.eyebrow}</span>
                                 <h2 className="section-title">{stack.title}</h2>

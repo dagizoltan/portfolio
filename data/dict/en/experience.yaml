@@ -4,10 +4,10 @@ head:
   keywords: "software developer experience, frontend engineer Budapest, Next.js developer, Node.js developer, AWS CloudFormation, IoT developer, embedded developer Hungary"
 
 hero:
-  eyebrow: "WORK HISTORY — 2015 TO 2024"
+  eyebrow: "EMPLOYED ROLES — 2015 TO 2024"
   title: "Eight roles, one direction."
   short_description: "Every role below is taken from my CV, with the dates and durations computed from the dates themselves."
-  description: "The path runs from repair-tracking software for Samsung and Vodafone service centres, through a venture-backed medical IoT device, to frontend engineering on Align Technology's patient-facing products.<br/><br/>Two of those roles were development lead positions, and one — a year at Bertelsmann in Berlin — was not engineering at all. Both are on the list, because leaving out the parts that do not fit the arc is how a CV stops being useful."
+  description: "The path runs from repair-tracking software for Samsung and Vodafone service centres, through a venture-backed medical IoT device, to frontend engineering on Align Technology's patient-facing products.<br/><br/>Two of those roles were development lead positions, and one — a year at Bertelsmann in Berlin — was not engineering at all. Both are on the list, because leaving out the parts that do not fit the arc is how a CV stops being useful.<br/><br/><strong>This page is employment. The work since the end of 2024 has been self-directed — four engineering projects, on the projects page.</strong>"
   cta_primary: "Download CV (PDF)"
   cta_primary_href: "/assets/zoltan-dagi-cv.pdf"
   cta_primary_download: true
