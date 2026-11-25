@@ -58,7 +58,8 @@ never a component.
 ## Design system
 
 Everything is driven by tokens at the top of `global.css`. The palette is lifted
-pixel-for-pixel from `Dági Zoltán - CV.pdf`:
+pixel-for-pixel from the original CV design export (removed from the tree;
+it is in git history at `e37b55a`):
 
 | Token | Value | From the CV |
 |---|---|---|
@@ -212,8 +213,9 @@ and a dark ground.
 
 ### Why the old export was replaced
 
-`Dági Zoltán - CV.pdf` is kept in the repository root for reference and is no
-longer served. It cannot be parsed or edited. Its visible content is ~96,000
+The original design export, `Dági Zoltán - CV.pdf`, has been deleted. It is
+still in git history at `e37b55a` if it is ever wanted back. It could not be
+parsed or edited. Its visible content is ~96,000
 vector path operators, and the Type 3 text layer beside it has glyph
 procedures containing only a `d1` metrics operator — they paint nothing. Strip
 every BT/ET block out of it and it renders identically. That is why

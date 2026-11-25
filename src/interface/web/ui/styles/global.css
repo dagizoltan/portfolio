@@ -14,7 +14,8 @@
   --font-mono: 'Roboto Mono', ui-monospace, monospace;
 
   /* ---------------------------------------------------------------
-     PALETTE — lifted pixel-for-pixel from Dági Zoltán - CV.pdf.
+     PALETTE — lifted pixel-for-pixel from the original CV design export,
+     which is no longer in the tree (git history, e37b55a).
      Navy ground, pale type, green for structure, orange for facts.
      Four values exist. Anything else is a bug.
      --------------------------------------------------------------- */

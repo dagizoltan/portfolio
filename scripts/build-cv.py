@@ -17,7 +17,8 @@ So: add content in `build_content`, add styling in a theme. Never in both.
 
 WHY NOT JUST EDIT THE OLD DESIGN EXPORT
 ---------------------------------------
-`Dági Zoltán - CV.pdf` cannot be edited or parsed. Its visible content is
+The original design export (deleted; in git history at `e37b55a`) could not
+be edited or parsed. Its visible content is
 ~96,000 vector path operators, and the Type 3 text layer beside it has glyph
 procedures containing only a `d1` metrics operator — they paint nothing. Strip
 every BT/ET block and it renders identically. That is why `pdftotext` reduces
