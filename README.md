@@ -177,34 +177,62 @@ they matter if you edit the copy:
 
 ## The two CVs
 
-There are two, and they are for different readers.
+Both are built by `scripts/build-cv.py` from the dictionaries under
+`data/dict/en/`, and they are the same CV:
 
-`Dági Zoltán - CV.pdf` is the design export, served at
-`/assets/zoltan-dagi-cv.pdf`. It is what the download buttons hand to a human.
-**It is also unreadable to software**, and not by a little: its visible content
-is ~96,000 vector path operators, and the text layer beside it is a set of
-Type 3 fonts whose glyph procedures contain only a `d1` metrics operator and
-paint nothing. Strip every BT/ET block out of it and it renders identically.
-That is why `pdftotext` turns its technology list into `HTM C A C WE PACK RO`,
-and why no edit to its text layer can change what the page shows — the two
-layers are independent, so editing one desynchronises the document.
+| | for | theme | size |
+|---|---|---|---|
+| `Zoltan-Dagi-CV.pdf` | humans | the site's palette and type | ~64 KB |
+| `Zoltan-Dagi-CV-ATS.pdf` | applicant tracking systems | black on white | ~8 KB |
 
-`Zoltan-Dagi-CV-ATS.pdf` is the machine-readable copy, built by
-`scripts/build-ats-cv.py` from the same dictionaries under `data/dict/en/`.
-One column, real text, base-14 Helvetica, no graphics, ~8 KB. Send this one to
-applicant tracking systems; they score the extracted text, and this extracts
-perfectly.
+`build_content()` reads the YAML and returns sections, entries and bullets.
+Neither theme may add, drop or reword any of it — they only decide what it
+looks like. `--verify` proves that by extracting the text from both and
+comparing it word for word, ignoring case and punctuation, since the portfolio
+theme sets headings in caps and bullets with an em dash.
+
+**Add content in `build_content`, styling in a theme, never in both.**
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install reportlab pyyaml
-.venv/bin/python scripts/build-ats-cv.py
-pdftotext Zoltan-Dagi-CV-ATS.pdf -   # if this reads correctly, so will an ATS
+.venv/bin/python scripts/build-cv.py --verify
 ```
 
-Regenerate it whenever the dictionaries change — it is the one artefact here
-that does not rebuild itself at render time. The script's docstring explains
-which layout rules are load-bearing; the short version is that right-aligned
-dates and multi-column skill lists are what break parsers, so neither is used.
+The designed build needs Roboto, Roboto Mono and Inter — the three faces the
+site loads. They are fetched once into `scripts/.fonts/` (gitignored) from the
+Google Fonts API, which serves TrueType only to a plain `Mozilla/5.0` user
+agent: a modern one gets woff2 and an old IE string gets EOT, and reportlab can
+embed neither. The `subset=latin,latin-ext` parameter is required rather than
+cosmetic — the plain `latin` subset has no ő or ű. Without a network the
+designed build falls back to system fonts and says so loudly.
+
+Both files carry a real text layer, so the designed one is parseable too. The
+plain one still exists because strict parsers do better without colour, rules
+and a dark ground.
+
+### Why the old export was replaced
+
+`Dági Zoltán - CV.pdf` is kept in the repository root for reference and is no
+longer served. It cannot be parsed or edited. Its visible content is ~96,000
+vector path operators, and the Type 3 text layer beside it has glyph
+procedures containing only a `d1` metrics operator — they paint nothing. Strip
+every BT/ET block out of it and it renders identically. That is why
+`pdftotext` reduced its technology list to `HTM C A C WE PACK RO`, and why its
+phone number could not be corrected in place: the text and the picture are
+independent, so patching one desynchronises the document.
+
+### Layout rules that are load-bearing
+
+Both themes obey these. They are not stylistic preferences:
+
+- **Single column, dates inline.** A date right-aligned beside a title reads,
+  to a parser working in x-order, as interleaved nonsense.
+- **Skills as comma-separated prose**, not chips, tables or columns. This is
+  the block keyword matching actually reads.
+- **Standard headings** (`Experience`, `Education`, `Skills`). Parsers match
+  the literal words.
+- **Letter-spacing via the PDF `Tc` operator** (see `TrackedLine`), never by
+  padding strings with spaces — that would extract as `Z O L T Á N`.
 
 ## Before this goes live
 
@@ -218,9 +246,11 @@ dates and multi-column skill lists are what break parsers, so neither is used.
 - [ ] **A GitHub link is the biggest single gap.** The CV lists Git, GitLab,
       GitHub and Bitbucket but links no public code. For a developer portfolio
       that is the first thing a technical reviewer looks for.
-- [ ] **The CV PDF is served from `/assets/zoltan-dagi-cv.pdf`** and is the file
-      from the repository root. Re-export it there when the CV changes — the
-      header, both hero buttons and the about page all point at that one path.
+- [ ] **The CV PDF is served from `/assets/zoltan-dagi-cv.pdf`**, which is a
+      copy of the generated `Zoltan-Dagi-CV.pdf`. It does not rebuild itself at
+      render time: after changing a dictionary, run `scripts/build-cv.py` and
+      copy the result over that asset. The header, both hero buttons and the
+      about page all point at that one path.
 - [ ] **The OG image is an SVG.** `assets/og-default.svg` renders correctly in
       most previews, but a few social platforms only accept raster. Export a
       1200×630 PNG and update `logo`/`defaultImage` in `site.js` if that matters.
