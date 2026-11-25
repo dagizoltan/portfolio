@@ -82,25 +82,41 @@
   --gap-lg: 2rem;
   --gap-xl: 3rem;
 
-  /* Typography */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
+  /* Typography — a ~1.4 ratio at the display end, tighter at the label end.
+     The old scale stepped by 1.2 throughout, which left body, meta and label
+     within a point or two of each other: the page read as "slightly different
+     sizes" rather than as levels. Labels still need fine control, so the first
+     three steps stay close and the ratio opens up above body size. */
+  --text-2xs: 0.625rem;    /* 10px — mono labels, eyebrows */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px — body */
+  --text-md: 1.1875rem;    /* 19px — lead paragraphs */
+  --text-lg: 1.625rem;     /* 26px — card titles */
+  --text-xl: 2.25rem;      /* 36px */
+  --text-2xl: 3.125rem;    /* 50px */
+  --text-3xl: 4.375rem;    /* 70px — display */
+  --text-4xl: 4.375rem;    /* retained alias */
 
   /* Fluid typography — display is Roboto Light, so it can run large without
      shouting the way a heavy condensed face would. */
-  --text-fluid-h1: clamp(2.5rem, 6.5vw + 1rem, 5.5rem);
-  --text-fluid-h2: clamp(1.75rem, 3.5vw + 1rem, 3.25rem);
-  --text-fluid-h3: clamp(1.25rem, 2vw + 0.75rem, 2rem);
-  --text-fluid-p: clamp(1rem, 1vw + 0.5rem, 1.125rem);
+  --text-fluid-h1: clamp(2.75rem, 7vw + 1rem, 6rem);
+  --text-fluid-h2: clamp(2rem, 4vw + 1rem, 3.5rem);
+  --text-fluid-h3: clamp(1.375rem, 2vw + 0.75rem, 2.125rem);
+  --text-fluid-p: clamp(1rem, 0.6vw + 0.85rem, 1.125rem);
 
   --container-width: 1280px;
+
+  /* Every run of body copy is capped at this. Long measure is the single
+     easiest way to make a clean layout unreadable; 68ch is the top of the
+     comfortable range. */
   --text-max-width: 68ch;
+
+  /* The page grid. Twelve columns, so a two-thirds / one-third split (the
+     hero and the role pages) and a half split both land on real column
+     boundaries instead of arbitrary percentages. */
+  --grid-columns: 12;
+  --grid-gap: clamp(1.25rem, 2.5vw, 2.5rem);
 }
 
 *, *::before, *::after {
@@ -574,7 +590,7 @@ summary:focus-visible {
   font-family: var(--font-display);
   font-weight: 300;
   font-size: var(--text-fluid-h2);
-  color: var(--color-accent);
+  color: var(--color-text-main);
   line-height: 1;
 }
 
@@ -641,14 +657,71 @@ summary:focus-visible {
 .hero-aside { width: 100%; }
 .hero-main-column { max-width: 62rem; }
 
+/* ---------------------------------------------------------------
+   Hero panel — the facts, in the third of the hero that used to be bare
+
+   Same construction as the role spec panel: hairline border, orange mono
+   label, foreground value. Reusing it means the home page and the role
+   pages state facts the same way instead of inventing a second idiom.
+   --------------------------------------------------------------- */
+.hero-panel {
+  border: 1px solid var(--color-border);
+  padding: 1.5rem 1.5rem 1.25rem;
+  background-color: var(--color-background);
+}
+
+.hero-panel-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-signal);
+  margin: 0 0 1.125rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hero-panel-list { margin: 0; }
+
+.hero-panel-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-block: 0.6rem;
+}
+
+.hero-panel-row + .hero-panel-row { border-top: 1px solid var(--color-border); }
+
+.hero-panel-row dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-text-muted);
+}
+
+.hero-panel-row dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-foreground);
+}
+
 .hero-subtitle {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: var(--text-xs);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.22em;
   margin: 0 0 1.75rem;
   color: var(--color-signal);
+}
+
+/* 0.22em of tracking is what pushed "AVAILABLE FOR WORK" onto a second
+   line mid-phrase at 375px. */
+@media (max-width: 519px) {
+  .hero-subtitle { letter-spacing: 0.14em; font-size: var(--text-2xs); }
 }
 
 .hero-title-row { margin-bottom: 2rem; }
@@ -720,6 +793,34 @@ summary:focus-visible {
 .hero-section--page .hero-description { display: none; }
 
 .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* On a phone the two buttons sat at their natural widths, so "SEE THE WORK"
+   and "DOWNLOAD CV (PDF)" stacked ragged. Below the wrap point they share
+   one full-width column instead. */
+@media (max-width: 519px) {
+  .hero-buttons { flex-direction: column; align-items: stretch; }
+  .hero-buttons .btn { width: 100%; text-align: center; justify-content: center; }
+}
+
+/* ---------------------------------------------------------------
+   Page heroes — the company is the fact, not the job title
+
+   A role page used to set the generic title ("Software Developer") at
+   display size and the employer ("Ispyre Informatics") at 11px above it.
+   That is the wrong way round: the employer is what a reader is scanning
+   for. The title stays the h1 for document structure; the two are simply
+   brought within sight of each other.
+   --------------------------------------------------------------- */
+.hero-section--page .hero-title { font-size: var(--text-fluid-h2); }
+
+.hero-section--page .hero-subtitle {
+  font-family: var(--font-display);
+  font-size: var(--text-fluid-h3);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  color: var(--color-signal);
+}
 
 .hero-contact-block {
   display: flex;

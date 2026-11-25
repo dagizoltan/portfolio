@@ -24,10 +24,11 @@
     margin: 0;
 }
 
-/* Figures are facts, so they take the mono face and the accent the rest of
-   the counted numbers on the site use. */
+/* Figures are facts, so they take the mono face and the orange every other
+   stated fact on the site uses. Green is reserved for the name and the
+   section headings. */
 .project-detail-figure {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
-    color: var(--color-accent);
+    color: var(--color-signal);
 }

@@ -14,6 +14,21 @@ hero:
   cta_secondary: "Download CV (PDF)"
   cta_secondary_href: "/assets/zoltan-dagi-cv.pdf"
   cta_secondary_download: true
+  # Fills the right third of the hero, which was bare navy. These are the
+  # facts a recruiter checks before reading anything else.
+  panel:
+    title: "At a glance"
+    items:
+      - label: "Status"
+        value: "Available for work"
+      - label: "Based in"
+        value: "Budapest, Hungary"
+      - label: "Working style"
+        value: "Remote-first"
+      - label: "Languages"
+        value: "Hungarian, English, German"
+      - label: "Depth"
+        value: "Frontend · Services · Embedded"
 
 metrics_labels:
   years: "Years in software"

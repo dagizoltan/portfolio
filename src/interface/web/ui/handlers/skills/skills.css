@@ -65,15 +65,19 @@
     white-space: nowrap;
 }
 
-/* The four-colour rotation, in the CV's own order. */
-.skill-group--c0 .skill-chip { color: var(--color-signal); }
-.skill-group--c1 .skill-chip { color: var(--color-accent); }
-.skill-group--c2 .skill-chip { color: var(--color-foreground); }
-.skill-group--c3 .skill-chip { color: var(--color-text-muted); }
+/* The rotation, in the CV's own order, minus the green.
+   It still carries no meaning — the CV states which technologies, not how
+   well, and colouring a judgement it never made would invent one. But green
+   now names only the person and the section headings, so a chip cannot take
+   it without the heading green meaning less. Three values are plenty to
+   separate adjacent groups.
 
-.skill-group--c0 .skill-group-name { color: var(--color-signal); }
-.skill-group--c2 .skill-group-name,
-.skill-group--c3 .skill-group-name { color: var(--color-accent); }
+   Group names are left alone: they are headings, so they inherit the green
+   from the global h1..h6 rule rather than each picking a colour. */
+.skill-group--c0 .skill-chip { color: var(--color-signal); }
+.skill-group--c1 .skill-chip { color: var(--color-foreground); }
+.skill-group--c2 .skill-chip { color: var(--color-text-muted); }
+.skill-group--c3 .skill-chip { color: var(--color-signal); }
 
 /* ---------------------------------------------------------------
    Secondary skills — the things that are not a stack

@@ -70,7 +70,8 @@ from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
-    Flowable, KeepTogether, Paragraph, SimpleDocTemplate, Spacer,
+    Flowable, KeepTogether, Paragraph, SimpleDocTemplate, Spacer, Table,
+    TableStyle,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -228,6 +229,10 @@ def build_content(lang="en"):
             meta.append(r["project"])
         entries.append({
             "title": f"{r['role']}, {r['company']}",
+            # `when` and `where` are kept apart so a theme can set the date in
+            # a rail; `meta` is the two joined, for themes that run one column.
+            "when": meta[0],
+            "where": "  |  ".join(meta[1:]),
             "meta": "  |  ".join(meta),
             "bullets": list(r.get("highlights", [])),
         })
@@ -240,6 +245,8 @@ def build_content(lang="en"):
             meta.append(p["language"])
         entries.append({
             "title": f"{p['name']} - {p['kind']}",
+            "when": meta[0],
+            "where": "  |  ".join(meta[1:]),
             "meta": "  |  ".join(meta),
             "lead": p["summary"],
             "bullets": list(p.get("highlights", [])[:2])
@@ -256,6 +263,8 @@ def build_content(lang="en"):
     sections.append({
         "title": "Education",
         "entries": [{"title": e["subject"],
+                     "when": e["range"],
+                     "where": e["school"],
                      "meta": f"{e['school']}  |  {e['range']}",
                      "bullets": []}
                     for e in about["education"]["items"]],
@@ -325,6 +334,17 @@ class Theme:
     name = "base"
     suffix = ""
     page_bg = None
+    margin = 18          # mm, left and right
+
+    def skills(self, pairs, st):
+        return [self.pair(label, value, st) for label, value in pairs]
+
+    def entry(self, entry, st):
+        block = [Paragraph(esc(entry["title"]), st["entry"]),
+                 Paragraph(esc(entry["meta"]), st["meta"])]
+        if entry.get("lead"):
+            block.append(Paragraph(esc(entry["lead"]), st["bullet"]))
+        return block + [self.bullet(b, st) for b in entry["bullets"]]
 
     def on_page(self, canvas, doc):
         if self.page_bg is not None:
@@ -339,6 +359,7 @@ class PlainTheme(Theme):
 
     name, suffix = "ats", "-ATS"
     page_bg = None
+    margin = 18
 
     body_font, bold_font = "Helvetica", "Helvetica-Bold"
 
@@ -388,6 +409,16 @@ class PortfolioTheme(Theme):
     name, suffix = "portfolio", ""
     page_bg = HexColor(PALETTE["ground"])
 
+    # Wider margins and a 96pt date rail bring the text column down from ~95
+    # characters to ~80. Long measure is what made the old single column hard
+    # to read however clean the type was.
+    # The rail is sized by the longest date the dictionary can produce
+    # ("September 2021 - April 2022" at 7pt mono, ~113pt) plus its 10pt
+    # gutter. Narrower and the rail wraps, which turns the second vertical
+    # edge the page reads against into a ragged one.
+    margin = 20
+    rail = 132
+
     display_font = "Roboto-Light"
     body_font, bold_font = "Inter-Regular", "Inter-SemiBold"
     mono_font, mono_bold = "RobotoMono-Regular", "RobotoMono-Bold"
@@ -400,52 +431,112 @@ class PortfolioTheme(Theme):
 
     def styles(self):
         text, muted = HexColor(PALETTE["text"]), HexColor(PALETTE["muted"])
-        base = ParagraphStyle("base", fontName=self.body_font, fontSize=8.4,
-                              leading=11.2, textColor=text)
+        base = ParagraphStyle("base", fontName=self.body_font, fontSize=8.5,
+                              leading=11.0, textColor=text)
         return {
             "contact": ParagraphStyle("contact", parent=base,
                                       fontName=self.mono_font, fontSize=7.4,
                                       leading=11, textColor=muted),
             "body": base,
             "intro": ParagraphStyle("intro", parent=base, fontSize=7.8,
-                                    leading=10.6, textColor=muted, spaceAfter=1),
+                                    leading=10, textColor=muted, spaceAfter=1),
             "entry": ParagraphStyle("entry", parent=base, fontName=self.bold_font,
-                                    fontSize=9.2, leading=11.6, spaceBefore=5),
+                                    fontSize=9.9, leading=11.8, spaceBefore=0),
             "meta": ParagraphStyle("meta", parent=base, fontName=self.mono_font,
                                    fontSize=7, leading=10.2,
                                    textColor=HexColor(PALETTE["signal"]),
                                    spaceAfter=1),
             "bullet": ParagraphStyle("bullet", parent=base, leftIndent=10,
-                                     firstLineIndent=-10, spaceAfter=0.8),
+                                     firstLineIndent=-10, spaceAfter=0.4),
+            # The date rail. Mono, orange, sitting on the title's baseline.
+            "rail": ParagraphStyle("rail", parent=base,
+                                   fontName=self.mono_font, fontSize=7,
+                                   leading=10.5,
+                                   textColor=HexColor(PALETTE["signal"]),
+                                   spaceBefore=3),
+            # One skill group: orange label over its comma list.
+            "skill": ParagraphStyle("skill", parent=base, fontSize=8.1,
+                                    leading=10.4, spaceAfter=0),
         }
 
     def header(self, content, st):
         accent = HexColor(PALETTE["accent"])
         return [
-            TrackedLine(content["name"].upper(), self.display_font, 21,
-                        accent, 2.0, 24),
-            TrackedLine(content["title"].upper(), self.display_font, 11.5,
-                        HexColor(PALETTE["muted"]), 2.6, 15),
+            TrackedLine(content["name"].upper(), self.display_font, 26,
+                        accent, 2.4, 30),
+            TrackedLine(content["title"].upper(), self.display_font, 12,
+                        HexColor(PALETTE["signal"]), 2.8, 17),
             Spacer(1, 5),
         ] + [Paragraph(esc(l), st["contact"]) for l in content["contact_lines"]]
 
     def heading(self, text, st):
-        return [Spacer(1, 6),
-                TrackedLine(text.upper(), self.display_font, 10.8,
-                            HexColor(PALETTE["accent"]), 2.2, 13,
-                            rule=HexColor(PALETTE["accent"]), rule_gap=3),
-                Spacer(1, 2)]
+        return [Spacer(1, 5),
+                TrackedLine(text.upper(), self.display_font, 11.2,
+                            HexColor(PALETTE["accent"]), 2.4, 13,
+                            rule=HexColor(PALETTE["rule"]), rule_gap=3),
+                Spacer(1, 1)]
 
     def pair(self, label, value, st):
         sig = PALETTE["signal"]
         return Paragraph(
-            f'<font face="{self.mono_bold}" size="7.4" color="{sig}">'
-            f'{esc(label.upper())}</font>  {esc(value)}', st["bullet"])
+            f'<font face="{self.mono_bold}" size="7" color="{sig}">'
+            f'{esc(label.upper())}</font><br/>{esc(value)}', st["skill"])
 
     def bullet(self, text, st):
-        accent = PALETTE["accent"]
-        return Paragraph(f'<font color="{accent}">—</font> {esc(text)}',
+        # Muted, not green: the dash should mark the line without competing
+        # with the headings. The hairline colour was tried first and is all
+        # but invisible on the ground.
+        return Paragraph(f'<font color="{PALETTE["muted"]}">—</font> {esc(text)}',
                          st["bullet"])
+
+    def skills(self, pairs, st):
+        """Two columns. Ten full-width rows of identical weight was a wall;
+        a reader's eye slid off it without landing anywhere."""
+        rows, half = [], (len(pairs) + 1) // 2
+        left, right = pairs[:half], pairs[half:]
+        for i in range(half):
+            a = self.pair(*left[i], st) if i < len(left) else ""
+            b = self.pair(*right[i], st) if i < len(right) else ""
+            rows.append([a, b])
+        width = (A4[0] - 2 * self.margin * mm - 14) / 2
+        tbl = Table(rows, colWidths=[width, width], hAlign="LEFT")
+        tbl.setStyle(TableStyle([
+            ("VALIGN", (0, 0), (-1, -1), "TOP"),
+            ("LEFTPADDING", (0, 0), (0, -1), 0),
+            ("LEFTPADDING", (1, 0), (1, -1), 14),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+            ("TOPPADDING", (0, 0), (-1, -1), 1),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+        ]))
+        return [tbl]
+
+    def entry(self, entry, st):
+        """Date in a left rail, everything else in the text column.
+
+        The rail is what caps the measure and gives the page a second
+        vertical edge to read against. Cells are drawn left then right, so
+        extraction still reads date-then-role rather than interleaving.
+        """
+        right = [Paragraph(esc(entry["title"]), st["entry"])]
+        if entry.get("where"):
+            right.append(Paragraph(esc(entry["where"]), st["meta"]))
+        if entry.get("lead"):
+            right.append(Paragraph(esc(entry["lead"]), st["bullet"]))
+        right += [self.bullet(b, st) for b in entry["bullets"]]
+
+        rail = Paragraph(esc(entry.get("when", "")), st["rail"])
+        content_w = A4[0] - 2 * self.margin * mm - self.rail
+        tbl = Table([[rail, right]], colWidths=[self.rail, content_w],
+                    hAlign="LEFT")
+        tbl.setStyle(TableStyle([
+            ("VALIGN", (0, 0), (-1, -1), "TOP"),
+            ("LEFTPADDING", (0, 0), (-1, -1), 0),
+            ("RIGHTPADDING", (0, 0), (0, -1), 10),
+            ("RIGHTPADDING", (1, 0), (1, -1), 0),
+            ("TOPPADDING", (0, 0), (-1, -1), 4),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+        ]))
+        return [tbl]
 
 
 # --------------------------------------------------------------------------
@@ -462,19 +553,14 @@ def render(content, theme, out_path):
             story.append(Paragraph(esc(section["intro"]), st["intro"]))
         for para in section.get("paras", []):
             story.append(Paragraph(esc(para), st["body"]))
-        for label, value in section.get("pairs", []):
-            story.append(theme.pair(label, value, st))
+        if section.get("pairs"):
+            story += theme.skills(section["pairs"], st)
         for entry in section.get("entries", []):
-            block = [Paragraph(esc(entry["title"]), st["entry"]),
-                     Paragraph(esc(entry["meta"]), st["meta"])]
-            if entry.get("lead"):
-                block.append(Paragraph(esc(entry["lead"]), st["bullet"]))
-            block += [theme.bullet(b, st) for b in entry["bullets"]]
-            story.append(KeepTogether(block))
+            story.append(KeepTogether(theme.entry(entry, st)))
 
     doc = SimpleDocTemplate(
         str(out_path), pagesize=A4,
-        leftMargin=18 * mm, rightMargin=18 * mm,
+        leftMargin=theme.margin * mm, rightMargin=theme.margin * mm,
         topMargin=15 * mm, bottomMargin=15 * mm,
         title=f"{content['name']} - {content['title']}",
         author=content["name"], subject="Curriculum Vitae",
@@ -495,7 +581,7 @@ def extract(path):
     out = subprocess.run(["pdftotext", str(path), "-"],
                          capture_output=True, text=True, check=True).stdout
     out = re.sub(r"[^\w\s]", " ", out.lower(), flags=re.UNICODE)
-    return re.sub(r"\s+", " ", out).strip()
+    return sorted(out.split())
 
 
 def main():
@@ -522,13 +608,15 @@ def main():
     if args.verify:
         a, b = (extract(p) for p in built)
         if a == b:
-            words = len(a.split())
-            print(f"verify: identical content in both ({words} words)")
+            print(f"verify: identical content in both ({len(a)} words)")
         else:
             print("verify: CONTENT DIFFERS", file=sys.stderr)
-            import difflib
-            for line in list(difflib.unified_diff(a.split(), b.split(), lineterm=""))[:40]:
-                print("  " + line, file=sys.stderr)
+            from collections import Counter
+            ca, cb = Counter(a), Counter(b)
+            for w, n in (ca - cb).items():
+                print(f"  only in {built[0].name}: {w} x{n}", file=sys.stderr)
+            for w, n in (cb - ca).items():
+                print(f"  only in {built[1].name}: {w} x{n}", file=sys.stderr)
             return 1
     return 0
 

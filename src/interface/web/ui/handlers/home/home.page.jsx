@@ -40,6 +40,19 @@ export const HomePage = ({ dict }) => {
                             }}
                             lang={lang}
                             isHome={true}
+                            aside={hero.panel && (
+                                <div className="hero-panel">
+                                    <h2 className="hero-panel-title">{hero.panel.title}</h2>
+                                    <dl className="hero-panel-list">
+                                        {hero.panel.items.map((item, i) => (
+                                            <div key={i} className="hero-panel-row">
+                                                <dt>{item.label}</dt>
+                                                <dd>{item.value}</dd>
+                                            </div>
+                                        ))}
+                                    </dl>
+                                </div>
+                            )}
                         />
 
                         <Metrics metrics={metrics} label={common.metrics_label} />
