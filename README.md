@@ -175,6 +175,37 @@ they matter if you edit the copy:
   would be inventing one. Nothing is lost if a reader cannot separate the greens
   from the oranges — each group is named in the heading above its own list.
 
+## The two CVs
+
+There are two, and they are for different readers.
+
+`Dági Zoltán - CV.pdf` is the design export, served at
+`/assets/zoltan-dagi-cv.pdf`. It is what the download buttons hand to a human.
+**It is also unreadable to software**, and not by a little: its visible content
+is ~96,000 vector path operators, and the text layer beside it is a set of
+Type 3 fonts whose glyph procedures contain only a `d1` metrics operator and
+paint nothing. Strip every BT/ET block out of it and it renders identically.
+That is why `pdftotext` turns its technology list into `HTM C A C WE PACK RO`,
+and why no edit to its text layer can change what the page shows — the two
+layers are independent, so editing one desynchronises the document.
+
+`Zoltan-Dagi-CV-ATS.pdf` is the machine-readable copy, built by
+`scripts/build-ats-cv.py` from the same dictionaries under `data/dict/en/`.
+One column, real text, base-14 Helvetica, no graphics, ~8 KB. Send this one to
+applicant tracking systems; they score the extracted text, and this extracts
+perfectly.
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install reportlab pyyaml
+.venv/bin/python scripts/build-ats-cv.py
+pdftotext Zoltan-Dagi-CV-ATS.pdf -   # if this reads correctly, so will an ATS
+```
+
+Regenerate it whenever the dictionaries change — it is the one artefact here
+that does not rebuild itself at render time. The script's docstring explains
+which layout rules are load-bearing; the short version is that right-aligned
+dates and multi-column skill lists are what break parsers, so neither is used.
+
 ## Before this goes live
 
 - [ ] **Set the domain.** `src/interface/web/ui/lib/seo/site.js` holds
